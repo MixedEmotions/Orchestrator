@@ -15,7 +15,8 @@ import utilities.{JsonPathsTraversor, MarathonServiceDiscovery, RequestExecutor,
 
 
 class DockerService(serviceId: String, requestUrl: String, outputField:String, serviceDiscovery: MarathonServiceDiscovery,
-                    method:String, bodyKey:String, responsePath: String, requestDelayMs: Int, requestTimeoutMs: Int)
+                    method:String, bodyKey:String, responsePath: String, deleteString: String, requestDelayMs: Int,
+                    requestTimeoutMs: Int)
 extends Serializable{
   implicit val formats = Serialization.formats(NoTypeHints)
 
@@ -28,7 +29,7 @@ extends Serializable{
     val bodyContent = if(bodyKey.length>0) input(bodyKey).toString else ""
     val response = RequestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs)
     //??? The response might be a single string or an array, not always a map
-    val selectedResult = JsonPathsTraversor.getJsonPath(responsePath, response).getOrElse(List())
+    val selectedResult = JsonPathsTraversor.getJsonPath(responsePath, response, deleteString).getOrElse(List())
     val result = input + ((outputField,selectedResult))
     result
 
@@ -69,10 +70,12 @@ object DockerService {
     val parsedConf = ConfigFactory.parseFile(confFile)
     val conf = ConfigFactory.load(parsedConf)
     val body : String = if(conf.hasPath("body")) conf.getString("body") else ""
+    val deleteString: String = if(conf.hasPath("result_delete_string")) conf.getString("result_delete_string") else ""
     val requestDelay = if(conf.hasPath("requestDelayMs")) conf.getInt("requestDelayMs") else 500
     val requestTimeout = if(conf.hasPath("requestTimeoutSeconds")) conf.getInt("requestTimeoutSeconds")*1000 else 50000
-    new DockerService(conf.getString("serviceId"), conf.getString("requestUrl"), conf.getString("outputField"), serviceDiscovery, conf.getString("method"), body,
-    conf.getString("responsePath"),requestDelay,requestTimeout)
+    new DockerService(conf.getString("serviceId"), conf.getString("requestUrl"), conf.getString("outputField"),
+      serviceDiscovery, conf.getString("method"), body, conf.getString("responsePath"), deleteString, requestDelay,
+      requestTimeout)
 
   }
 

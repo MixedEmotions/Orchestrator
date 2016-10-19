@@ -9,6 +9,7 @@ import org.elasticsearch.common.settings.ImmutableSettings
 import org.json4s.NoTypeHints
 import org.json4s.jackson.Serialization
 import org.json4s.jackson.Serialization._
+import org.slf4j.LoggerFactory
 
 import scala.util.parsing.json.JSON
 
@@ -16,17 +17,18 @@ import scala.util.parsing.json.JSON
  * Created by cnavarro on 16/02/16.
  */
 class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
+  val logger = LoggerFactory.getLogger(ElasticsearchPersistor.getClass)
 
   def this(ip: String, port: Int, clusterName: String, indexName: String){
 
     this(ElasticClient.remote(ImmutableSettings.settingsBuilder().put("cluster.name", clusterName).build(),
       ElasticsearchClientUri(s"elasticsearch://${ip}:${port}")),     indexName)
-    println(s"elasticsearch://${ip}:${port}")
+      logger.debug(s"Elasticsearch ip: elasticsearch://${ip}:${port}")
   }
 
 
   def saveTweet(tweet : Map[String, Any]) :  scala.collection.mutable.Map[String, Any] ={
-    println("Saving tweets")
+    logger.debug("Saving tweets")
 
 
     val resp = client.execute {
@@ -69,11 +71,10 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
   }
 
   def saveTweets(tweets: Seq[Map[String,Any]], documentType: String): Unit ={
-    println("Bulk Bogan!")
+    logger.debug("Saving tweets in bulk")
      val resp = client.execute {
        bulk(
          for(tweet<-tweets) yield {
-           println(tweet)
            if(tweet.contains("id")) {
              index into indexName / documentType fields (tweet) id tweet("id")
            }else{
@@ -91,6 +92,7 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
 }
 
 object ElasticsearchPersistor {
+  val logger = LoggerFactory.getLogger(ElasticsearchPersistor.getClass)
 
   def persistTweetsFromMapMP(lines: Iterator[scala.collection.mutable.Map[String,Any]], ip:String, port:Int,
                              clusterName: String, indexName: String) : Iterator[scala.collection.mutable.Map[String,Any]]= {
@@ -129,7 +131,6 @@ object ElasticsearchPersistor {
 
     val rawTweet  = tweet("raw").asInstanceOf[Map[String,Any]]
     val projectId = tweet("project_id").asInstanceOf[Double].round.toInt
-    println("TWWWWEEEEET")
     Map("lang" -> tweet("lang").asInstanceOf[String],
         "raw" ->  rawTweet,
         "brand" -> tweet("brand").asInstanceOf[String],
@@ -160,7 +161,7 @@ object ElasticsearchPersistor {
   
   def persistTweets(input: List[String], ip: String, port: Int, clusterName: String,
                            indexName: String): Unit = {
-    println(s"~~~~~~~~~~~~~~~~~going to persist in ${ip}:${port.toString} at ${clusterName}")
+    logger.debug(s"~~~~~~~~~~~~~~~~~going to persist tweets in ${ip}:${port.toString} at ${clusterName}")
 
 
     val parsedTweets = input.map(x=> JSON.parseFull(x).asInstanceOf[Option[Map[String,Any]]].getOrElse(Map[String,Any]()))
@@ -179,7 +180,7 @@ object ElasticsearchPersistor {
 
   def persistWithoutFormatting(input: List[String], ip: String, port: Int, clusterName: String,
                                 indexName: String, documentType: String): Unit = {
-    println(s"~~~~~~~~~~~~~~~~~going to persist in ${ip}:${port.toString} at ${clusterName}")
+    logger.debug(s"~~~~~~~~~~~~~~~~~going to persist in ${ip}:${port.toString} at ${clusterName}")
 
 
     val parsedInputs = input.map(x=> JSON.parseFull(x).asInstanceOf[Option[Map[String,Any]]].getOrElse(Map[String,Any]()))

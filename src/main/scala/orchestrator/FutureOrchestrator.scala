@@ -158,8 +158,6 @@ object FutureOrchestrator {
     logger.info("Starting  -------\n")
 
 
-    println("inputPath")
-
 
     val initData = Source.fromFile(inputPath).getLines()
     //val data = initData.union(addData)

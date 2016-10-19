@@ -1,13 +1,14 @@
-import org.scalatest.Assertions._
-
+import services.RESTService
 import utilities.JsonPathsTraversor
 
+import scala.io.Source
+import scala.util.parsing.json.JSON
 
 
 /**
  * Created by cnavarro on 13/07/16.
  */
-class JsonPathsTraversorTest extends UnitSpec{
+class RESTServiceTest extends UnitSpec{
 val jsonString = """{
         "@context": "http://reed.gsi.dit.upm.es:4000/api/contexts/Results.jsonld",
         "@id": "Results_1468239762.55",
@@ -317,88 +318,23 @@ val jsonString = """{
 
   }
 
-  "Parsing json until last element" should "Be a list of 1 and 1" in {
+  "A RESTService" should "be created from a configuration file" in {
+    val confPath = getClass.getResource("/restServices/upm_emotion.conf").toString.replaceFirst("file:","")
+    val restService = RESTService.restServiceFromConfFile(confPath)
 
-    assertResult(Some(List("1","1"))){
-      JsonPathsTraversor.getJsonPath("entries.sentiments.marl:polarityValue", jsonString)
-    }
   }
 
-  "Parsing json until previous to last element" should "Be a the map with the values" in {
+  "A RESTService" should "have the expected response" in {
+    assertResult(Map("text" -> "The new Star Wars film is awesome.", "lang" -> "en", "emotions" -> Map("emotion" -> Some(List("joy")), "valence" -> Some(List(5.575))))) {
+      val input = "{ \"text\": \"The new Star Wars film is awesome.\", \"lang\": \"en\"}"
+      val confPath = getClass.getResource("/restServices/upm_emotion.conf").toString.replaceFirst("file:","")
 
-    assertResult(Some(List(Map("@id" -> "Opinion0", "marl:hasPolarity" -> "marl:Positive", "marl:polarityValue" -> "1", "prov:wasGeneratedBy" -> "sentiText"), Map("@id" -> "Opinion0", "marl:hasPolarity" -> "marl:Positive", "marl:polarityValue" -> "1", "prov:wasGeneratedBy" -> "sentiText")))){
-      JsonPathsTraversor.getJsonPath("entries.sentiments", jsonString)
+      val restService = RESTService.restServiceFromConfFile(confPath)
+      val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
+      restService.executeService(inputMap)
     }
-  }
 
-  "Parsing json with nonexistent path" should "Be None" in {
-    assertResult(None){
-      JsonPathsTraversor.getJsonPath("notpath", jsonString)
-    }
   }
-
-  "Parsing json with invalid path" should "Be None" in {
-    assertResult(None){
-      JsonPathsTraversor.getJsonPath("notpath....////\\\\--", jsonString)
-    }
-  }
-
-  "Parsing json with empty path" should "Be the complete map" in {
-    assertResult(Some(List("http://reed.gsi.dit.upm.es:4000/api/contexts/Results.jsonld", "Results_1468239762.55", List(Map("stopwords_es" -> "/senpy-plugins/enterprise/sentiText/Dictionaries/SPA/stopwords.txt", "author" -> "@icorcuera", "module" -> "sentiText", "name" -> "sentiText", "minPolarityValue" -> 0.0, "dictionary_es" -> "/senpy-plugins/enterprise/sentiText/Dictionaries/ElhPolar_esV1.lex.txt", "description" -> "Sentiment classifier using rule-based classification based on English and Spanish", "is_activated" -> true, "extra_params" -> Map("language" -> Map("aliases" -> List("language", "l", "lang"), "default" -> "en", "options" -> List("es", "en"), "required" -> true)), "sentiwordnet_en" -> "/Dictionaries/SentiWordNet_3.0.0_20100705.txt", "local_path" -> "/senpy-plugins/enterprise/sentiText", "info" -> Map("stopwords_es" -> "/Dictionaries/SPA/stopwords.txt", "author" -> "@icorcuera", "module" -> "sentiText", "name" -> "sentiText", "dictionary_es" -> "/Dictionaries/ElhPolar_esV1.lex.txt", "description" -> "Sentiment classifier using rule-based classification based on English and Spanish", "extra_params" -> Map("language" -> Map("aliases" -> List("language", "l", "lang"), "default" -> "en", "options" -> List("es", "en"), "required" -> true)), "sentiwordnet_en" -> "/Dictionaries/SentiWordNet_3.0.0_20100705.txt", "version" -> "0.1", "requirements" -> Map(), "corpus_es" -> "/Corpus/general-tweets-train-tagged.json", "stopwords_en" -> "/Dictionaries/ENG/stopwords.txt", "corpus_en" -> "/Corpus/sentiment140-dataset.txt", "emoticons" -> "/Dictionaries/EmoticonSentimentLexicon.txt"), "version" -> "0.1", "requirements" -> Map(), "@type" -> "marl:SentimentAnalysis", "dictionary_en" -> "/senpy-plugins/enterprise/sentiText/Dictionaries/SentiWordNet_3.0.0_20100705.txt", "corpus_es" -> "/senpy-plugins/enterprise/sentiText/Corpus/general-tweets-train-tagged.json", "stopwords_en" -> "/senpy-plugins/enterprise/sentiText/Dictionaries/ENG/stopwords.txt", "maxPolarityValue" -> 1.0, "corpus_en" -> "/senpy-plugins/enterprise/sentiText/Corpus/sentiment140-dataset.txt", "emoticons" -> "/senpy-plugins/enterprise/sentiText/Dictionaries/EmoticonSentimentLexicon.txt", "@id" -> "sentiText")), List(Map("@id" -> "Entry0", "nif_isString" -> "The new Star Wars film is awesome, but maybe it is just for fans. You will not enjoy it anyway", "sentiments" -> List(Map("@id" -> "Opinion0", "marl:hasPolarity" -> "marl:Positive", "marl:polarityValue" -> "1", "prov:wasGeneratedBy" -> "sentiText"), Map("@id" -> "Opinion0", "marl:hasPolarity" -> "marl:Positive", "marl:polarityValue" -> "1", "prov:wasGeneratedBy" -> "sentiText"))))))){
-      JsonPathsTraversor.getJsonPath("", jsonString)
-    }
-  }
-
-  "Parsing json with @id path" should "return a list with the id" in {
-    assertResult(Some(List("Results_1468239762.55"))){
-      JsonPathsTraversor.getJsonPath("@id", jsonString)
-    }
-  }
-
-  "Parsing string list with empty path" should "be the string list" in {
-    assertResult(Some(List("an string"))){
-      JsonPathsTraversor.getJsonPath("","[\"an string\"]")
-    }
-  }
-
-  "Getting item in json" should "return a list of lists" in {
-    assertResult(Some(List(List("1"),List("2","1")))){
-      JsonPathsTraversor.getItemInJsonPath("entries.sentiments", "marl:polarityValue",jsonString2)
-    }
-  }
-
-  "Getting item in json with emotions" should "return a list of lists" in {
-    assertResult(Some(List(List("http://gsi.dit.upm.es/ontologies/wnaffect/ns#sadness")))){
-      JsonPathsTraversor.getItemInJsonPath("entries.emotions.onyx:hasEmotion", "onyx:hasEmotionCategory",jsonString3)
-    }
-  }
-
-  "Parsing json with a complex path that includes colon" should "return the expected item" in {
-    assertResult(Some(List("http://gsi.dit.upm.es/ontologies/wnaffect/ns#sadness"))){
-      JsonPathsTraversor.getJsonPath("entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory", jsonString3)
-    }
-  }
-
-  "Parsing json with a path that includes _DOT_" should "return the expected item" in {
-    assertResult(Some(List(5.75))) {
-      JsonPathsTraversor.getJsonPath("entries.emotions.onyx:hasEmotion.http://www_DOT_gsi_DOT_dit_DOT_upm_DOT_es/ontologies/onyx/vocabularies/anew/ns#arousal", jsonString3)
-    }
-  }
-
-  "Using getJsonMap" should "return a map with the defined keys and the expected values" in {
-    assertResult(Map("arousal"->Some(List(5.75)), "emotion"->Some(List("http://gsi.dit.upm.es/ontologies/wnaffect/ns#sadness")))) {
-      JsonPathsTraversor.getJsonMapPath(Map("arousal"->"entries.emotions.onyx:hasEmotion.http://www_DOT_gsi_DOT_dit_DOT_upm_DOT_es/ontologies/onyx/vocabularies/anew/ns#arousal",
-      "emotion"->"entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory"),jsonString3)
-    }
-  }
-
-  "A getJsonMap with a delete string" should "make the correct substitution in every field" in {
-    assertResult(Map("arousal"->Some(List(5.75)), "emotion"->Some(List("sadness")))) {
-      JsonPathsTraversor.getJsonMapPath(Map("arousal"->"entries.emotions.onyx:hasEmotion.http://www_DOT_gsi_DOT_dit_DOT_upm_DOT_es/ontologies/onyx/vocabularies/anew/ns#arousal",
-        "emotion"->"entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory"),jsonString3, "http://gsi.dit.upm.es/ontologies/wnaffect/ns#")
-    }
-  }
-
 
 
 
