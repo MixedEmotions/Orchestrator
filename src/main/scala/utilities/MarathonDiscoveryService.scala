@@ -6,13 +6,13 @@ import scala.util.parsing.json.JSON
 /**
  * Created by cnavarro on 10/06/16.
  */
-class MarathonServiceDiscovery(dnsIp: String, dnsPort: Int) extends Serializable {
+class MarathonDiscoveryService(dnsIp: String, dnsPort: Int) extends DiscoveryService {
 
-  def naiveServiceDiscover(serviceId: String) : (String, Int) = {
+  def getIpAndPort(serviceId: String) : (String, Int) = {
     val mesosUrl = s"http://${this.dnsIp}:${this.dnsPort}/v1/services/_${serviceId}._tcp.marathon.mesos"
     //val response = utilities.MarathonServiceDiscovery.getURL(mesosUrl)
     println(mesosUrl)
-    val response = MarathonServiceDiscovery.getURL(mesosUrl)
+    val response = MarathonDiscoveryService.getURL(mesosUrl)
     val mapList = JSON.parseFull(response).asInstanceOf[Some[List[Map[String, Any]]]]
     val addressesList = mapList.getOrElse(List(Map()).asInstanceOf[List[Map[String, Any]]])
     val length = addressesList.length
@@ -32,12 +32,12 @@ class MarathonServiceDiscovery(dnsIp: String, dnsPort: Int) extends Serializable
     }
   }
 
-  def naiveServiceDiscoverURL(serviceId: String) : String = {
+  def getUrl(serviceId: String) : String = {
     val mesosUrl = s"http://${this.dnsIp}:${this.dnsPort}/v1/services/_${serviceId}._tcp.marathon.mesos"
     //val response = utilities.MarathonServiceDiscovery.getURL(mesosUrl)
     println(mesosUrl)
     println("mesos url")
-    val response = MarathonServiceDiscovery.getURL(mesosUrl)
+    val response = MarathonDiscoveryService.getURL(mesosUrl)
     val mapList = JSON.parseFull(response).asInstanceOf[Some[List[Map[String, Any]]]]
     val addressesList = mapList.getOrElse(List(Map()).asInstanceOf[List[Map[String, Any]]])
     val length = addressesList.length
@@ -57,10 +57,10 @@ class MarathonServiceDiscovery(dnsIp: String, dnsPort: Int) extends Serializable
 
 }
 
-object MarathonServiceDiscovery {
+object MarathonDiscoveryService {
   def main(args: Array[String]) {
-    val discovery = new MarathonServiceDiscovery("localhost",8123)
-    val (ip, port) = discovery.naiveServiceDiscover("bridged-webapp")
+    val discovery = new MarathonDiscoveryService("localhost",8123)
+    val (ip, port) = discovery.getIpAndPort("bridged-webapp")
     println(s"ip:${ip}, ${port}")
 
   }

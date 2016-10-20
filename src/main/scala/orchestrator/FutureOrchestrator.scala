@@ -4,8 +4,8 @@ import java.io.{BufferedWriter, File, FileWriter}
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.slf4j.LoggerFactory
-import services.{NotsFilter, DockerService, RESTService}
-import utilities.{ElasticsearchPersistor, MarathonServiceDiscovery}
+import services.{ServiceFactory, NotsFilter, DockerService, RESTService}
+import utilities.{ElasticsearchPersistor, MarathonDiscoveryService}
 
 
 import scala.collection.JavaConversions._
@@ -24,7 +24,7 @@ object FutureOrchestrator {
 
 
   def createConfigurationMap(confFilePath: String) : Config = {
-    println(s"ConfFile: ${confFilePath}")
+    logger.info(s"ConfFile: ${confFilePath}")
     val confFile = new File(confFilePath)
     val parsedConf = ConfigFactory.parseFile(confFile)
     ConfigFactory.load(parsedConf)
@@ -32,38 +32,14 @@ object FutureOrchestrator {
 
 
   def findMixEmModule(modName: String)(implicit configurationMap: Config): String => String = {
-    modName.trim match {
-      case s if s.startsWith("docker") => dockerService(s, configurationMap)
-      case s if s.startsWith("rest") => restService(s, configurationMap)
-      case _ => throw new Exception("Module names should start by 'docker' or 'rest' in the 'modules' setting of the project configuration file")
-    }
-  }
 
-  def dockerService(dockerName:String, configurationMap: Config): String => String = {
-    val serviceName = dockerName.replace("docker_","")
-    val confFolder = configurationMap.getString("docker_conf_folder")
-    val confPath = confFolder + serviceName + ".conf"
-    println(s"Docker conf path: ${confPath}")
-    val discoveryService = new MarathonServiceDiscovery(configurationMap.getString("mesos_dns.ip"), configurationMap.getInt("mesos_dns.port"))
-    val service = DockerService.dockerServiceFromConfFile(confPath, discoveryService)
-    service.executeService
-  }
-
-
-  def restService(restServiceName:String, configurationMap: Config): String => String = {
-    val serviceName = restServiceName.replace("rest_", "")
-    val confFolder = configurationMap.getString("rest_conf_folder")
-    val confPath = confFolder + serviceName + ".conf"
-    println(s"Rest conf path: ${confPath}")
-
-    val service = RESTService.restServiceFromConfFile(confPath)
-    service.executeService
+    ServiceFactory.createAndExecuteService(modName, configurationMap)
 
   }
 
 
   def saveToFile(input: List[Future[String]], outputPath:String, processingTimeOut: Duration): Unit ={
-    println(s"Writing into ${outputPath} ")
+    logger.info(s"Writing into ${outputPath} ")
     val file = new File(outputPath)
     val bw = new BufferedWriter(new FileWriter(file))
     for(line<-input){
@@ -104,11 +80,7 @@ object FutureOrchestrator {
         }
       }
     }
-
-
-    println(s"Going to persist ${badPracticeResults.length}")
-
-
+    logger.info(s"Going to persist ${badPracticeResults.length}")
 
     ElasticsearchPersistor.persistWithoutFormatting(badPracticeResults.toList, esIP, esPort , esClusterName, indexName, documentType)
 
@@ -163,7 +135,7 @@ object FutureOrchestrator {
     //val data = initData.union(addData)
     val data : List[String] = initData.toList
 
-    println("\nTotal number of raw data to process: " + data.length + "\n")
+    logger.info("\nTotal number of raw data to process: " + data.length + "\n")
 
     // The NOT filter is initially applied to the data
     //TODO This should really be in parallel also
@@ -178,7 +150,7 @@ object FutureOrchestrator {
     // Getting the function that results from the composition of the selected modules/functions
     val dummyFunc: (String => String) = {x => x}
     val compFunc = funcArray.foldLeft(dummyFunc)(_.compose(_))
-    println(s"Functions num: ${funcArray.length}")
+    logger.debug(s"Functions num: ${funcArray.length}")
 
     //funcArray.reduce(data)
 
@@ -188,7 +160,7 @@ object FutureOrchestrator {
 
 
     // Data are processed by the selected modules (composed function)
-    println(s"\nNumber of items after processing (resultJSON): ${futureResults.length}\n")
+    logger.debug(s"\nNumber of items after processing (resultJSON): ${futureResults.length}\n")
 
     saveToFile(futureResults,configurationMap.getString("outputFilePath"), configurationMap.getInt("executionTimeoutSeconds") seconds)
     saveToElasticsearch(futureResults, configurationMap)
@@ -196,7 +168,7 @@ object FutureOrchestrator {
 
 
 
-    println("-Finished-")
+    logger.info("-Finished-")
 
   }
 

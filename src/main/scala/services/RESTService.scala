@@ -1,16 +1,5 @@
 package services
 
-import java.io.File
-
-import scala.collection.JavaConversions._
-import com.typesafe.config.ConfigFactory
-import org.json4s.NoTypeHints
-import org.json4s.jackson.Serialization
-import org.json4s.jackson.Serialization._
-import org.slf4j.LoggerFactory
-import utilities.{JsonPathsTraversor, RequestExecutor, ServiceConfParser}
-
-
 import scala.util.parsing.json.JSON
 
 /**
@@ -18,67 +7,16 @@ import scala.util.parsing.json.JSON
  */
 class RESTService(requestUrl: String, method: String, bodyKey: String, ip: String, port:Int, outputField:String, responsePath: String,
                  responseMap: Map[String,String], deleteString: String, requestDelayMs: Int, requestTimeoutMs: Int)
-  extends Serializable{
-  val logger = LoggerFactory.getLogger(RESTService.getClass)
-  implicit val formats = Serialization.formats(NoTypeHints)
+  extends ExecutableService(requestUrl, method, bodyKey, outputField, responsePath, responseMap, deleteString, requestDelayMs, requestTimeoutMs){
 
-
-
-  def executeService(input: Map[String,Any]): Map[String, Any] ={
-    val url = ServiceConfParser.completeUrl(ip, port, requestUrl, input)
-    logger.debug(s"Going to execute service:${url}")
-    val bodyContent = if(bodyKey.length>0) input(bodyKey).toString else ""
-    val response = RequestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs)
-    val selectedResult = JsonPathsTraversor.getJsonMapPath(responseMap, response, deleteString)
-    //val selectedResult = JsonPathsTraversor.getJsonPath(responsePath, response, deleteString).getOrElse(List())
-    val result = input + ((outputField,selectedResult))
-    result
-
+  def getIpAndPort(): (String, Int) = {
+    (ip, port)
   }
-
-  def executeService(jsonString: String): String = {
-    val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
-    temp match {
-      case x: Some[Map[String, Any]] => {
-        write(executeService(x.get.asInstanceOf[Map[String,Any]]))
-      }
-      case None => {
-        jsonString
-      }
-    }
-
-  }
-
-  def executeService(input: Iterator[Map[String,Any]]) : Iterator[Map[String,Any]] = {
-    for(entry<-input) yield {
-      executeService(entry)
-    }
-  }
-
-  def executeServiceJSONList(input: List[String]) : List[String] = {
-    for(entry<-input) yield {
-      executeService(entry)
-    }
-  }
-
 
 }
 
-object RESTService extends ExecutableService {
-  def restServiceFromConfFile(confPath: String): RESTService ={
-    val confFile = new File(confPath)
-    val parsedConf = ConfigFactory.parseFile(confFile)
-    val conf = ConfigFactory.load(parsedConf)
-    val body : String = if(conf.hasPath("body")) conf.getString("body") else ""
-    val responseMap: Map[String,String] = conf.getValue("responseMap").unwrapped().asInstanceOf[java.util.HashMap[String,String]].toMap
-    val deleteString: String = if(conf.hasPath("resultDeleteString")) conf.getString("resultDeleteString") else ""
-    val requestDelay = if(conf.hasPath("requestDelayMs")) conf.getInt("requestDelayMs") else 500
-    val requestTimeout = conf.getInt("requestTimeoutSeconds")*1000
-    new RESTService(conf.getString("requestUrl"), conf.getString("method"), body, conf.getString("ip"),
-      conf.getInt("port"), conf.getString("outputField"), conf.getString("responsePath"), responseMap, deleteString,
-      requestDelay, requestTimeout)
+object RESTService {
 
-  }
 
 
   def main(args: Array[String]) {
@@ -97,7 +35,7 @@ object RESTService extends ExecutableService {
 
     val confPath = "/home/cnavarro/workspace/mixedemotions/MixedEmotions/orchestrator/src/main/resources/restServices/upm_emotion.conf"
 
-    val restService = restServiceFromConfFile(confPath)
+    val restService = ServiceFactory.restServiceFromConfFile(confPath)
 
 
     for(input<-inputs){
