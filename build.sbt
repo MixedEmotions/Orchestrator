@@ -1,12 +1,12 @@
 name := "MixedEmotionsExampleOrchestrator"
 
-version := "0.11"
+version := "0.12"
 
 scalaVersion := "2.10.4"
 
 libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.0.0"
 
-libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-streams" % "1.7.1"
+libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-streams" % "2.3.1"
 
 libraryDependencies += "org.json4s" % "json4s-jackson_2.10" % "3.2.11"
 

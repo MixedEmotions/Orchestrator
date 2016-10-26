@@ -5,8 +5,8 @@ import java.text.Normalizer
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.slf4j.LoggerFactory
-import services.{RESTService, DockerService, NotsFilter}
-import utilities.{ElasticsearchPersistor, MarathonServiceDiscovery}
+import services.{ServiceFactory, RESTService, DockerService, NotsFilter}
+import utilities.{ElasticsearchPersistor, MarathonDiscoveryService}
 
 import scala.collection.JavaConversions._
 import scala.io.Source
@@ -28,6 +28,7 @@ object ScalaOrchestrator {
 
   def findMixEmModule(mod: String)(implicit configurationMap : Config): List[String] => List[String] = {
 
+
     mod.trim match {
       case s if s.startsWith("docker") => dockerService(s, configurationMap)
 
@@ -44,8 +45,8 @@ object ScalaOrchestrator {
     val confFolder = configurationMap.getString("docker_conf_folder")
     val confPath = confFolder + serviceName + ".conf"
     println(s"Docker conf path: ${confPath}")
-    val discoveryService = new MarathonServiceDiscovery(configurationMap.getString("mesos_dns.ip"), configurationMap.getInt("mesos_dns.port"))
-    val service = DockerService.dockerServiceFromConfFile(confPath, discoveryService)
+    val discoveryService = new MarathonDiscoveryService(configurationMap.getString("mesos_dns.ip"), configurationMap.getInt("mesos_dns.port"))
+    val service = ServiceFactory.dockerServiceFromConfFile(confPath, discoveryService)
     service.executeServiceJSONList
 
   }
@@ -57,7 +58,7 @@ object ScalaOrchestrator {
     val confPath = confFolder + serviceName + ".conf"
     println(s"Rest conf path: ${confPath}")
 
-    val service = RESTService.restServiceFromConfFile(confPath)
+    val service = ServiceFactory.restServiceFromConfFile(confPath)
     service.executeServiceJSONList
   }
 

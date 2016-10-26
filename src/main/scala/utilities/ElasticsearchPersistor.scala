@@ -5,7 +5,7 @@ import java.util.Calendar
 
 import com.sksamuel.elastic4s.ElasticDsl.{bulk, index, _}
 import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
-import org.elasticsearch.common.settings.ImmutableSettings
+import org.elasticsearch.common.settings.Settings
 import org.json4s.NoTypeHints
 import org.json4s.jackson.Serialization
 import org.json4s.jackson.Serialization._
@@ -21,7 +21,7 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
 
   def this(ip: String, port: Int, clusterName: String, indexName: String){
 
-    this(ElasticClient.remote(ImmutableSettings.settingsBuilder().put("cluster.name", clusterName).build(),
+    this(ElasticClient.remote(Settings.settingsBuilder().put("cluster.name", clusterName).build(),
       ElasticsearchClientUri(s"elasticsearch://${ip}:${port}")),     indexName)
       logger.debug(s"Elasticsearch ip: elasticsearch://${ip}:${port}")
   }
@@ -71,7 +71,7 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
   }
 
   def saveTweets(tweets: Seq[Map[String,Any]], documentType: String): Unit ={
-    logger.debug("Saving tweets in bulk")
+    logger.debug(s"Saving ${tweets.size} tweets in bulk")
      val resp = client.execute {
        bulk(
          for(tweet<-tweets) yield {
@@ -208,20 +208,17 @@ object ElasticsearchPersistor {
 
 
   def main (args: Array[String]) {
+    val filepath = if(args.length>0) args(0) else "/home/cnavarro/workspace/mixedemotions/MixedEmotions/orchestrator/src/test/resources/input/one.txt"
     val ip = "localhost"
     val port = 9300
-    val clusterName = "elasticsearch"
-    val indexName = "myanalyzed"
+    val clusterName = "MixedEmotions"
+    val indexName = "reviews"
+    val documentType = "text_review"
 
-/*
-    val ip = "mixednode2"
-    val port = 9300
-    val clusterName = "Mixedemotions Elasticsearch"
-    val indexName = "myanalyzed"
-  */
+
     val persistor : ElasticsearchPersistor = new ElasticsearchPersistor(ip, port, clusterName, indexName)
     val resp = persistor.client.execute {
-      index into "myanalyzed" / "test" fields(
+      index into indexName / documentType fields(
 
         "brand" -> "test",
         "text" -> "some new text",
@@ -229,6 +226,8 @@ object ElasticsearchPersistor {
 
         ) id "test11211"
     }.await
+    val input = io.Source.fromFile(filepath).getLines.toList
+    persistWithoutFormatting(input, ip, port, clusterName, indexName, documentType)
     println("Finished, I guess")
 
   }
