@@ -1,6 +1,6 @@
 name := "MixedEmotionsExampleOrchestrator"
 
-version := "0.12"
+version := "0.13"
 
 scalaVersion := "2.10.4"
 
@@ -10,7 +10,7 @@ libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-streams" % "2.3.1"
 
 libraryDependencies += "org.json4s" % "json4s-jackson_2.10" % "3.2.11"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.2.6" % "test"
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.2.1" % "test"
 
 libraryDependencies += "org.scalamock" %% "scalamock-scalatest-support" % "3.2.2" % "test"
 

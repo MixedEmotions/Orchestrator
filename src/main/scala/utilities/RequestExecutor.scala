@@ -1,7 +1,13 @@
 package utilities
 
-import scala.util.parsing.json.JSON
+import java.nio.file.{Files, Paths}
+
+import org.slf4j.LoggerFactory
+
 import scalaj.http.{HttpResponse, _}
+
+import utilities.ServiceConfCompleter.completeBody
+
 
 class RequestExecutor {
 
@@ -23,11 +29,13 @@ class RequestExecutor {
 }
 
 object RequestExecutor {
+  val logger = LoggerFactory.getLogger(RequestExecutor.getClass)
 
 
-  def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: String = ""): String ={
+  def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: Option[String],
+                      fileUploadData: Option[Map[String,String]]=None): String ={
     if(method=="POST"){
-      executePostRequest(query, body, requestTimeout, requestDelay)
+      executePostRequest(query, body, requestTimeout, requestDelay, fileUploadData)
     }else{
       executeGetRequest(query, requestTimeout, requestDelay)
     }
@@ -38,22 +46,22 @@ object RequestExecutor {
   // Each query is delivered to the service and the response is stored
   def executeGetRequest(query: String, requestTimeoutMs: Int, requestDelayMs: Int): String = {
     // The REST service is queried and the response (JSON format) is obtained
-    println(s"Waiting ${requestDelayMs}")
+    logger.debug(s"Waiting ${requestDelayMs}ms")
     Thread.sleep(requestDelayMs)
     try {
-      println(s"Executing query ${query}")
-      println(s"Waiting response for ${requestTimeoutMs} ms")
+      logger.debug(s"Executing query ${query}")
+      logger.debug(s"Waiting response for ${requestTimeoutMs} ms")
       val response: HttpResponse[String] = Http(query).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
       if (response.isError) {
-        println(s"HttpError: $query . ${response.body} ${response.code}")
+        logger.error(s"HttpError: $query . ${response.body} ${response.code}")
         "{}"
       }
       val body = response.body
       body
     }catch{
       case e: Exception => {
-        println("Unexpected error executing get request")
-        println(s"Error: ${e.getMessage}\n")
+        logger.error("Unexpected error executing get request")
+        logger.error(s"Error: ${e.getMessage}\n")
         //println(e.getStackTrace.mkString("\n"))
         "{}"
       }
@@ -61,14 +69,15 @@ object RequestExecutor {
 
   }
 
-  def executePostRequest(query: String, postBody:String, requestTimeoutMs: Int, requestDelayMs: Int): String = {
+  def executePostRequest(query: String, postBody:Option[String], requestTimeoutMs: Int, requestDelayMs: Int, fileUploadData: Option[Map[String,String]]): String = {
     // The REST service is queried and the response (JSON format) is obtained
-    println("Waiting")
+    logger.debug(s"Waiting for ${requestDelayMs}ms")
     Thread.sleep(requestDelayMs)
     try {
-      val response: HttpResponse[String] = Http(query).postData(postBody).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+      logger.debug(s"Waiting response for ${requestTimeoutMs} ms")
+      val response: HttpResponse[String] = sendPost(query, postBody, requestTimeoutMs, fileUploadData)
       if (response.isError) {
-        println(s"HttpError: $query . ${response.body} ${response.code}")
+        logger.error(s"HttpError: $query . ${response.body} ${response.code}")
         //Map()
         "{}"
       }
@@ -76,13 +85,38 @@ object RequestExecutor {
       body
     }catch{
       case e: Exception => {
-        println("Unexpected error executing post request")
+        logger.error(s"Unexpected error executing post request: ${e.getMessage} ")
         //Map()
         "{}"
       }
     }
   }
 
+  def sendPost(query: String, postBody: Option[String], requestTimeoutMs: Int, fileUploadDataOption: Option[Map[String, String]]): HttpResponse[String] = {
+    if(fileUploadDataOption.isDefined) {
+      val fileUploadData = fileUploadDataOption.get
+      logger.debug("Going to try file upload")
+      logger.debug(s"fileUploadData: ${fileUploadData}")
+      var data :Array[Byte]= null
+      val filepath = fileUploadData("filePath")
+      val path = Paths.get(filepath)
+      val filename = path.getFileName.toString
+      try {
 
+        data = Files.readAllBytes(Paths.get(filepath))
+      } catch {
+        case e: java.nio.file.NoSuchFileException =>{
+          logger.error(s"Error retrieving file: ${e.getMessage}")
+          throw new Exception("java.nio.file.NoSuchFileException Error retrieving file: ${e.getMessage}")
+        }
+      }
+      val multi = MultiPart(fileUploadData("name"), filename, fileUploadData("mime"), data )
+      logger.debug("Going to upload file")
+      logger.debug(s"Query: ${query}")
+      Http(query).postMulti(multi).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+    }else {
+      Http(query).postData(postBody.getOrElse("")).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+    }
+  }
 
 }

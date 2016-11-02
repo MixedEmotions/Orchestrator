@@ -40,7 +40,7 @@ class RESTServiceTest extends UnitSpec{
 
   }
 
-  "A RESTService without a responseMap" should "have the expected response" in {
+  "A RESTService with a response.json.path" should "have the expected response" in {
     assertResult(Map("text" -> "The new Star Wars film is awesome.", "lang" -> "en", "sentiment"-> List("1"))) {
       val input = "{ \"text\": \"The new Star Wars film is awesome.\", \"lang\": \"en\"}"
       val confPath = getClass.getResource("/restServices/upm_sentiment.conf").toString.replaceFirst("file:","")
@@ -60,6 +60,16 @@ class RESTServiceTest extends UnitSpec{
       val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
       restService.executeService(inputMap)
     }
+  }
+
+  "A RESTService with a result.parse.string" should "parse the correct string"  in {
+      val input = "{ \"text\": \"The new Star Wars film is awesome.\", \"lang\": \"en\"}"
+      val confPath = getClass.getResource("/restServices/string_service.conf").toString.replaceFirst("file:","")
+
+      val restService = ServiceFactory.restServiceFromConfFile(confPath)
+      val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
+      restService.executeService(inputMap)
+
   }
 
 

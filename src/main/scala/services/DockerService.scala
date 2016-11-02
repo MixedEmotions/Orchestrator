@@ -2,13 +2,11 @@ package services
 
 import scala.util.parsing.json.JSON
 
-import utilities.{DiscoveryService,MarathonDiscoveryService}
+import utilities.{ExecutableServiceConf, DiscoveryService, MarathonDiscoveryService}
 
 
-class DockerService(serviceId: String, requestUrl: String, outputField:String, serviceDiscovery: DiscoveryService,
-                    method:String, bodyKey:String, responsePath: String, responseMap: Map[String, String],
-                    deleteString: String, requestDelayMs: Int, requestTimeoutMs: Int)
-extends ExecutableService(requestUrl, method, bodyKey, outputField, responsePath, responseMap, deleteString, requestDelayMs, requestTimeoutMs){
+class DockerService(serviceId: String, serviceDiscovery: DiscoveryService, serviceConf: ExecutableServiceConf)
+extends ExecutableService(serviceConf){
 
   def getIpAndPort(): (String, Int) = {
     serviceDiscovery.getIpAndPort(serviceId)

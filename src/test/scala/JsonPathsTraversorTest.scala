@@ -395,7 +395,7 @@ val jsonString = """{
   "A getJsonMap with a delete string" should "make the correct substitution in every field" in {
     assertResult(Map("arousal"->Some(List(5.75)), "emotion"->Some(List("sadness")))) {
       JsonPathsTraversor.getJsonMapPath(Map("arousal"->"entries.emotions.onyx:hasEmotion.http://www_DOT_gsi_DOT_dit_DOT_upm_DOT_es/ontologies/onyx/vocabularies/anew/ns#arousal",
-        "emotion"->"entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory"),jsonString3, "http://gsi.dit.upm.es/ontologies/wnaffect/ns#")
+        "emotion"->"entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory"),jsonString3, Some("http://gsi.dit.upm.es/ontologies/wnaffect/ns#"))
     }
   }
 
