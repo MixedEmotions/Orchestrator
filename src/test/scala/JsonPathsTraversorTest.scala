@@ -2,6 +2,7 @@ import org.scalatest.Assertions._
 
 import utilities.JsonPathsTraversor
 
+import scala.io.Source
 
 
 /**
@@ -306,6 +307,9 @@ val jsonString = """{
       }
     """.stripMargin
 
+  val asrJsonPath = getClass.getResource("/input/videoResponseWithAsr.json").toString.replaceFirst("file:","")
+  val asrJsonString =  Source.fromFile(asrJsonPath).getLines.mkString
+
   "An empty Set" should "have size 0" in {
     assert(Set.empty.size == 0)
   }
@@ -398,6 +402,29 @@ val jsonString = """{
         "emotion"->"entries.emotions.onyx:hasEmotion.onyx:hasEmotionCategory"),jsonString3, Some("http://gsi.dit.upm.es/ontologies/wnaffect/ns#"))
     }
   }
+
+  "Parsing a json with multipath" should "return a List with the map elements" in {
+
+    assertResult(List(Map("arousal" -> Some(List(2.575)), "valence" -> Some(List(3.597))), Map("arousal" -> Some(List(-0.023)), "valence" -> Some(List(0.027))), Map("arousal" -> Some(List(0.008)), "valence" -> Some(List(0.128))), Map("arousal" -> Some(List(-0.065)), "valence" -> Some(List(0.019))))){
+      JsonPathsTraversor.getJsonFlatMap(Map("arousal"->"emotions.onyx:hasEmotion.emovoc:arousal", "valence"->"emotions.onyx:hasEmotion.emovoc:valence"),
+        "entries", asrJsonString,None)
+
+
+    }
+  }
+
+  "Parsing a json with multipath as empty string" should "return a List with the map elements using the plain list as a base" in {
+
+    assertResult(List(Map("text" -> Some(List("Yeah")), "arousal" -> Some(List(2.575)), "valence" -> Some(List(3.597)), "sentiment" -> Some(List(0.339))), Map("text" -> Some(List("Guys back to another video you mentioned will so this is basically twenty four hours later with these little g for")), "arousal" -> Some(List(-0.023)), "valence" -> Some(List(0.027)), "sentiment" -> Some(List(0.966))), Map("text" -> Some(List("Know about this phone yesterday in the morning time and I both my on one to use didn't get a feel for it")), "arousal" -> Some(List(0.008)), "valence" -> Some(List(0.128)), "sentiment" -> Some(List(0.847))), Map("text" -> Some(List("Um but here I am after the hype with the for now this is what late as a phone service the market is really really New fresh in the same less than thirty days as far as been sold in the us m gonna say probably")), "arousal" -> Some(List(-0.065)), "valence" -> Some(List(0.019)), "sentiment" -> None)))
+    {
+      JsonPathsTraversor.getJsonFlatMap(Map("text"->"Text","arousal"->"entries.emotions.onyx:hasEmotion.emovoc:arousal", "valence"->"entries.emotions.onyx:hasEmotion.emovoc:valence",
+        "sentiment"->"entries.emotions.onyx:hasEmotion.Sentiment"),
+        "", asrJsonString,None)
+
+
+    }
+  }
+
 
 
 

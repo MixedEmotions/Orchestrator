@@ -1,0 +1,117 @@
+[{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Yeah",
+    "entries": [{"emotions": [{
+        "@id": "Entry0#time=3.82,4.06",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 3.597,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 2.575,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.339,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Guys back to another video you mentioned will so this is basically twenty four hours later with these little g for",
+    "entries": [{"emotions": [{
+        "@id": "Entry2#time=27.625,35.365",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.023,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.027,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.966,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Know about this phone yesterday in the morning time and I both my on one to use didn't get a feel for it",
+    "entries": [{"emotions": [{
+        "@id": "Entry3#time=35.815,42.895",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.128,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.008,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.847,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um but here I am after the hype with the for now this is what late as a phone service the market is really really New fresh in the same less than thirty days as far as been sold in the us m gonna say probably",
+    "entries": [{"emotions": [{
+        "@id": "Entry4#time=43.985,57.725",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.065,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.019,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+]

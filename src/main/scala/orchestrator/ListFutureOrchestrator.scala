@@ -17,7 +17,7 @@ import scala.io.Source
 import scala.util.{Failure, Success}
 
 
-object FutureOrchestrator {
+object ListFutureOrchestrator {
   //val defaultConfFilePath = "/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/dockerProject.conf"
   //val confFilePath = "/home/cnavarro/projectManager/conf/docker.conf"
   val logger = LoggerFactory.getLogger(FutureOrchestrator.getClass)
@@ -31,21 +31,23 @@ object FutureOrchestrator {
   }
 
 
-  def findMixEmModule(modName: String)(implicit configurationMap: Config): String => String = {
+  def findMixEmModule(modName: String)(implicit configurationMap: Config): List[String] => List[String] = {
 
-    ServiceFactory.createAndExecuteService(modName, configurationMap)
+    ServiceFactory.createAndExecuteListService(modName, configurationMap)
 
   }
 
 
-  def saveToFile(input: List[Future[String]], outputPath:String, processingTimeOut: Duration): Unit ={
+  def saveListToFile(input: List[Future[List[String]]], outputPath:String, processingTimeOut: Duration): Unit ={
     logger.info(s"Writing into ${outputPath} ")
     val file = new File(outputPath)
     val bw = new BufferedWriter(new FileWriter(file))
     for(line<-input){
       line.onComplete {
         case Success(value)=>{
-          bw.write(s"${value}\n")
+          for(item<-value){
+            bw.write(s"${item}\n")
+          }
         }
         case Failure(e) => {
           bw.write(s"Error: ${e.getMessage}")
@@ -63,7 +65,7 @@ object FutureOrchestrator {
     sys.exit(1)
   }
 
-  def saveToElasticsearch(input : List[Future[String]], configurationMap: Config): Unit =  {
+  def saveListToElasticsearch(input : List[Future[List[String]]], configurationMap: Config): Unit =  {
 
     val esIP = configurationMap.getString("elasticsearch.ip")
     val esPort = configurationMap.getString("elasticsearch.port").toInt
@@ -74,7 +76,9 @@ object FutureOrchestrator {
     for(result<-input){
       result.onComplete{
         case Success(value)=>{
-          badPracticeResults.+=(value)
+          for(item<-value){
+            badPracticeResults.+=(item)
+          }
         }
         case Failure(e) => {
           logger.error(s"Error: ${e.getMessage}")
@@ -149,14 +153,14 @@ object FutureOrchestrator {
     val funcArray = mods.map(findMixEmModule)
 
     // Getting the function that results from the composition of the selected modules/functions
-    val dummyFunc: (String => String) = {x => x}
+    val dummyFunc: (List[String] => List[String]) = {x => x}
     val compFunc = funcArray.foldLeft(dummyFunc)(_.compose(_))
     logger.debug(s"Functions num: ${funcArray.length}")
 
     //funcArray.reduce(data)
 
 
-    val futureResults = for(datum<-data) yield Future{compFunc(datum)}
+    val futureResults = for(datum<-data) yield Future{compFunc(List(datum))}
 
 
 
@@ -164,10 +168,10 @@ object FutureOrchestrator {
     logger.debug(s"Number of items after processing (resultJSON): ${futureResults.length}\n")
 
     if(configurationMap.hasPath("outputFilePath")){
-      saveToFile(futureResults,configurationMap.getString("outputFilePath"), configurationMap.getInt("executionTimeoutSeconds") seconds)
+      saveListToFile(futureResults,configurationMap.getString("outputFilePath"), configurationMap.getInt("executionTimeoutSeconds") seconds)
     }
     if(configurationMap.hasPath("elasticsearch")){
-      saveToElasticsearch(futureResults, configurationMap)
+      saveListToElasticsearch(futureResults, configurationMap)
     }
 
 

@@ -3,6 +3,8 @@ package utilities
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonAST.JNumber
+import org.json4s.jackson.Serialization._
+import org.slf4j.LoggerFactory
 
 import scala.util.parsing.json.JSON
 
@@ -11,30 +13,9 @@ import scala.util.parsing.json.JSON
  */
 object JsonPathsTraversor {
   implicit val formats = DefaultFormats
-
-  /*def getMapInJsonPath(path:String, validKeys: List[String], jsonString:String): Option[Any] = {
-    val jacksonObject = parse(jsonString)
-    val entries = jacksonPath(path, jacksonObject)
-    println(s"Entries: ${entries}")
-    val parsedEntries = JSON.parseFull(compact(entries)).getOrElse(Map()).asInstanceOf[Map[String,List[Map[String,Any]]]]
-    println(parsedEntries)
-    println(parsedEntries.keySet)
-    println()
+  val logger = LoggerFactory.getLogger(JsonPathsTraversor.this.getClass)
 
 
-    /*for(map <- maps) {
-      properMap = parseMapToObtainProperMap
-      resultMap
-      traverse keys {
-        if key in validKeys
-          resultMap[key] = properMap[key]
-      }
-      yield resultMap
-    }*/
-    None
-
-
-  }*/
 
 
   def getItemInJsonPath(path:String, itemPath:String, jsonString: String, deleteString:Option[String]=None): Option[Any] = {
@@ -78,6 +59,28 @@ object JsonPathsTraversor {
   def getJsonMapPath(mapPath: Map[String, String], jsonString: String, deleteString: Option[String] = None): Map[String,Option[Any]] = {
     mapPath.mapValues(value=>getJsonPath(value, jsonString, deleteString))
   }
+
+  def getJsonFlatMap(mapPath: Map[String, String], arrayPath: String, jsonString: String, deleteString: Option[String]=None): List[Map[String,Option[Any]]] = {
+    val possibleList = getJsonPath(arrayPath, jsonString, deleteString)
+    if (possibleList.isDefined && possibleList.get.isInstanceOf[List[Any]]) {
+      val baseArray: List[Any] = possibleList.get.asInstanceOf[List[Any]]
+      //logger.debug(s"baseArray: ${baseArray}")
+      val result: List[Map[String, Option[Any]]] = for (entryPoint <- baseArray) yield {
+        //logger.debug(s"EntryPoint ${entryPoint}")
+        if(entryPoint.isInstanceOf[List[Any]] && entryPoint.asInstanceOf[List[Any]].size==1){
+          getJsonMapPath(mapPath, write(entryPoint.asInstanceOf[List[Map[String,Any]]].head), deleteString)
+        }else{
+          getJsonMapPath(mapPath, write(entryPoint.asInstanceOf[Map[String, Any]]), deleteString)
+        }
+      }
+      result
+    }else{
+      logger.debug(s"Could not find array path '${arrayPath}'")
+      List()
+    }
+
+  }
+
 
 
   def main(args: Array[String]) {

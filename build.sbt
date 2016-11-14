@@ -1,6 +1,6 @@
 name := "MixedEmotionsExampleOrchestrator"
 
-version := "0.13"
+version := "0.14"
 
 scalaVersion := "2.10.4"
 

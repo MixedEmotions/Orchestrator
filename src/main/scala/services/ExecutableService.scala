@@ -12,7 +12,7 @@ import scala.util.parsing.json.JSON
 /**
  * Created by cnavarro on 14/10/16.
  */
-abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
+abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExecutor: RequestExecutor) {
 
   val logger = LoggerFactory.getLogger(ExecutableService.this.getClass)
   implicit val formats = Serialization.formats(NoTypeHints)
@@ -27,6 +27,9 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
   val responseParseString = serviceConf.responseParseString
   val outputField = serviceConf.outputField
   val deleteString = serviceConf.deleteString
+  val pivotPath = serviceConf.pivotPath
+  val pivotName = serviceConf.pivotName
+  val pivotId = serviceConf.pivotId
 
   def getIpAndPort(): (String, Int)
 
@@ -36,14 +39,47 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
     logger.debug("Executing Service:"+url)
     val bodyContent = if(body.isDefined) Some(ServiceConfCompleter.completeBody(body.get, input)) else None
     val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
-    val response = RequestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
+    val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
                                                   fileUploadData=fileUploadData)
-    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString)
+    logger.debug(s"Response: ${response}")
+    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, None)
+    logger.debug(s"SelectedResult: ${selectedResult}")
     val result = input + ((outputField,selectedResult))
     result
   }
 
-  def parseResponse(response: String, responsePath: Option[String], responseMap: Option[Map[String,String]], responseParseString: Option[String]) : Any = {
+  def executeServiceAndObtainList(input: Map[String,Any]): List[Map[String, Any]] ={
+    val (ip, port) = getIpAndPort()
+    val url = ServiceConfCompleter.completeUrl(ip, port, requestUrl, input)
+    logger.debug("Executing Service:"+url)
+    val bodyContent = if(body.isDefined) Some(ServiceConfCompleter.completeBody(body.get, input)) else None
+    val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
+    val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
+      fileUploadData=fileUploadData)
+    logger.debug(s"Response: ${response}")
+    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, pivotPath)
+    logger.debug(s"SelectedResult: ${selectedResult}")
+    if(pivotPath.isDefined){
+      multiplyByPivot(selectedResult.asInstanceOf[List[Map[String,Any]]], input, pivotName.get, pivotId.get)
+    }else{
+      val result = input + ((outputField,selectedResult))
+      List(result)
+    }
+  }
+
+  def multiplyByPivot(resultList: List[Map[String, Any]], input: Map[String, Any], pivotName:String, pivotId: String): List[Map[String, Any]] = {
+    for(itemResult<-resultList) yield{
+      val mixedResult = input + ((outputField, itemResult))
+      //If for any reason I decide to parse the input to get this
+      // val pivotIdValue = JsonPathsTraversor.getJsonPath(pivotId, write(input), None)
+      val pivotIdValue = ServiceConfCompleter.completeBody(pivotId, input)
+      val mixedResultWithPivotId = mixedResult + ((pivotName, pivotIdValue))
+      mixedResultWithPivotId
+    }
+  }
+
+  def parseResponse(response: String, responsePath: Option[String], responseMap: Option[Map[String,String]],
+                    responseParseString: Option[String], pivotPath: Option[String]) : Any = {
     if(responseParseString.isDefined){
       val pattern = new Regex(responseParseString.get)
       val matchData = pattern.findFirstMatchIn(response)
@@ -52,6 +88,10 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
       }else{
         logger.debug(s"Pattern ${responseParseString.get} not found in ${response}")
       }
+    }else if(pivotPath.isDefined){
+      JsonPathsTraversor.getJsonFlatMap(responseMap.get,pivotPath.get, response, deleteString)
+
+
     }else if(responseMap.isDefined){
       JsonPathsTraversor.getJsonMapPath(responseMap.get, response, deleteString)
     }else if(responsePath.isDefined){
@@ -63,6 +103,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
 
 
 
+
   def executeService(jsonString: String): String = {
     val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
     temp match {
@@ -70,6 +111,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
         write(executeService(x.get.asInstanceOf[Map[String,Any]]))
       }
       case None => {
+        logger.error(s"Error parsing input json, conserving input: '${jsonString}'")
         jsonString
       }
     }
@@ -79,6 +121,29 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf) {
     for (entry <- input) yield {
       executeService(entry)
     }
+  }
+
+  def executeServiceAsFlatMap(input: List[String]) : List[String] = {
+    input.flatMap(executeServiceAsList(_))
+
+  }
+
+  def executeServiceAsList(jsonString: String): List[String] = {
+    val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
+    temp match {
+      case x: Some[Map[String, Any]] => {
+        val results = executeServiceAndObtainList(x.get)
+        for(result<-results) yield {
+          write(result)
+        }
+      }
+      case None => {
+        logger.error(s"Error parsing input json, conserving input: '${jsonString}'")
+        List(jsonString)
+      }
+    }
+
+
   }
 
 

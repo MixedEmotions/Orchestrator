@@ -2,54 +2,56 @@ package utilities
 
 import java.net.URLEncoder
 
+import org.slf4j.LoggerFactory
+
 /**
  * Created by cnavarro on 4/07/16.
  */
 object ServiceConfCompleter{
+  val logger = LoggerFactory.getLogger(ServiceConfCompleter.getClass)
 
   def completeUrl(ip: String, port: Int, parameteredUrl: String, inputMap : Map[String, Any] ): String = {
-    val parts = parameteredUrl.split("[$|}]")
-    val substitutedParts = parts.map(part=>{
-      if(part.startsWith("{")){
-        val key = part.replaceFirst("^\\{","")
-        URLEncoder.encode(inputMap(key).toString,"UTF-8")
-      }else{
-        part
-      }
-    })
-    val completedUrl = s"http://${ip}:${port}/${substitutedParts.mkString("")}"
+    val substitutedString = completeString(parameteredUrl, inputMap, true)
+    val completedUrl = s"http://${ip}:${port}/${substitutedString}"
     completedUrl
   }
 
   def completeBody(parameteredBody: String, inputMap : Map[String, Any] ): String = {
-    val parts = parameteredBody.split("[$|}]")
-    val substitutedParts = parts.map(part=>{
-      if(part.startsWith("{")){
-        val key = part.replaceFirst("^\\{","")
-        inputMap(key).toString
-      }else{
-        part
-      }
-    })
-    val completedBody = substitutedParts.mkString("")
-    completedBody
+    completeString(parameteredBody, inputMap, false)
   }
 
   def completeFileUploadData(fileUploadConf: Map[String,String], inputMap : Map[String, Any] ): Option[Map[String, String]] = {
     val completedFileUploadData = for((key,value)<-fileUploadConf) yield{
-      val parts = value.split("[$|}]")
-      val substitutedParts = parts.map(part => {
-        if (part.startsWith("{")) {
-          val key = part.replaceFirst("^\\{", "")
-          inputMap(key).toString
-        } else {
-          part
-        }
-      })
-      val completedBody = substitutedParts.mkString("")
+      val completedBody = completeString(value, inputMap, false)
       (key, completedBody)
     }
     Some(completedFileUploadData)
+  }
+
+  def completeString(parameteredString: String, inputMap: Map[String, Any], urlEncode: Boolean):String = {
+    val parts = parameteredString.split("[$|}]")
+    val substitutedParts = parts.map(part=>{
+      if(part.startsWith("{")){
+        val key = part.replaceFirst("^\\{","")
+        logger.debug(s"Searching key: ${key}")
+        if(inputMap.contains(key)) {
+          val value = inputMap(key)
+          logger.debug(s"Found ${value} for key ${key}")
+          if (urlEncode) {
+            URLEncoder.encode(value.toString, "UTF-8")
+          } else {
+            value
+          }
+        }else{
+          val error = s"Unable to find key '${key}' when completing string"
+          logger.error(error)
+          throw new Exception(error)
+        }
+      }else{
+        part
+      }
+    })
+    substitutedParts.mkString("")
   }
 
   def main(args: Array[String]) {

@@ -1,0 +1,2623 @@
+[{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Yeah",
+    "entries": [{"emotions": [{
+        "@id": "Entry0#time=3.82,4.06",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 3.597,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 2.575,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.339,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Yeah",
+    "entries": [{"emotions": [{
+        "@id": "Entry1#time=10.61,11.11",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 1.499,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 2.575,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.339,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Guys back to another video you mentioned will so this is basically twenty four hours later with these little g for",
+    "entries": [{"emotions": [{
+        "@id": "Entry2#time=27.625,35.365",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.023,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.027,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.966,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Know about this phone yesterday in the morning time and I both my on one to use didn't get a feel for it",
+    "entries": [{"emotions": [{
+        "@id": "Entry3#time=35.815,42.895",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.128,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.008,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.847,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um but here I am after the hype with the for now this is what late as a phone service the market is really really New fresh in the same less than thirty days as far as been sold in the us m gonna say probably",
+    "entries": [{"emotions": [{
+        "@id": "Entry4#time=43.985,57.725",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.065,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.019,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Every corner this video so the first thing you see we look at this phone is a five Point five inch",
+    "entries": [{"emotions": [{
+        "@id": "Entry5#time=58.025,63.815",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.079,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.185,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.988,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Ten eighty p p have split it is actually much prior than I thought it would be in person",
+    "entries": [{"emotions": [{
+        "@id": "Entry6#time=64.685,71.125",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.062,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.127,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.232,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I guess place don't have all this place all the time I I prefer and all of this place because the brightness I can get to and the punching in the colors as a preference",
+    "entries": [{"emotions": [{
+        "@id": "Entry7#time=71.425,80.915",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.057,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.022,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.977,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "But as we know I have other phone I guess this and they're very good very solid",
+    "entries": [{"emotions": [{
+        "@id": "Entry8#time=81.135,85.865",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.254,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.137,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.98,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "But this one however coming at the Price Point even though retail starts at one ninety-nine their own sale everywhere and actually my once again from one forty-nine a and that is is a fantastic Deal and that's what makes it",
+    "entries": [{"emotions": [{
+        "@id": "Entry9#time=86.105,99.035",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.034,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.056,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.079,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Work from what getting this is at p and is five twenty five inches",
+    "entries": [{"emotions": [{
+        "@id": "Entry10#time=99.115,104.685",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.206,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.089,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.993,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And it is actually very bright and then it makes to a seven twenty p family a display",
+    "entries": [{"emotions": [{
+        "@id": "Entry11#time=104.895,111.355",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.045,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.134,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.989,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I was actually pretty shocked that it was performing because the seven a phenomenal phone with the screen",
+    "entries": [{"emotions": [{
+        "@id": "Entry12#time=112.445,119.845",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.016,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.082,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.986,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "This so bright and so did it so country but all at this place so that's almost appears to be a ten it's like",
+    "entries": [{"emotions": [{
+        "@id": "Entry13#time=120.02,127.08",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.083,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.032,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.169,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "When actually put it up fifteen and you could just like you can kind of see the difference a little bit I know it doesn't a better screen the some of the other phone subscribe to seven but that The g for have a beautiful display community p a five five inches it's actually really I didn't think it was gonna be this good sometimes when you look at things on video",
+    "entries": [{"emotions": [{
+        "@id": "Entry14#time=127.37,146.22",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.115,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": -0.017,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "You don't think that is gonna be they're good are you have your differences about it until you get it in hand and this is one of those phone I thought about my father's place No one thing I will say that the camera on the um little g for proved to be very very good",
+    "entries": [{"emotions": [{
+        "@id": "Entry15#time=146.4,162.93",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.087,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.031,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I love love love",
+    "entries": [{"emotions": [{
+        "@id": "Entry16#time=165.85,167.72",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.23,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.37,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.835,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "How these pictures come out um I I wasn't expecting such a good camera even the front camera proved to be very very good service now is one i'm not here",
+    "entries": [{"emotions": [{
+        "@id": "Entry17#time=168.37,179.81",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.065,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.025,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.51,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And you'll see that now",
+    "entries": [{"emotions": [{
+        "@id": "Entry18#time=182.06,183.21",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.806,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.647,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.89,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "B s photos that are taken from this camera I watch from a Guy him sometimes his name is runs the Or something like that us over see somewhere have a",
+    "entries": [{"emotions": [{
+        "@id": "Entry19#time=184.23000000000002,194.14",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.03,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.11,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.016,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "You can probably and he would be phone next to the g four plus",
+    "entries": [{"emotions": [{
+        "@id": "Entry20#time=194.6,199.5",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.157,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.117,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.678,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And the differences were so minimum uh with the sixty on the lady and actually prefer this camera over the gene for plus in a lot of area and so",
+    "entries": [{"emotions": [{
+        "@id": "Entry21#time=199.74,210.86",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.035,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.053,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.62,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "That didn't swayed me away from that you for plus which was you for a plus when everything was talking about the fingerprint leader and you keep getting it sometimes get Home",
+    "entries": [{"emotions": [{
+        "@id": "Entry22#time=211.57,220.79000000000002",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.003,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.086,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.965,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I just didn't you know I just wasn't told on at that Point and it kind of a little bit about the two",
+    "entries": [{"emotions": [{
+        "@id": "Entry23#time=221.93,226.9",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.131,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.24,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.998,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "But the cameras on here before very well this is a am I able to do totally and that on all these last really help it is the colors like natural shooting in a little is when the flash comes",
+    "entries": [{"emotions": [{
+        "@id": "Entry24#time=227.35,239.92000000000002",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.033,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.04,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.985,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "It's actually really really good and I was pretty surprised at that as well too good cameras low Price really good screen",
+    "entries": [{"emotions": [{
+        "@id": "Entry25#time=241.16,249.19",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.081,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.009,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.997,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Let's continue",
+    "entries": [{"emotions": [{
+        "@id": "Entry26#time=249.91,250.64",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.976,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.349,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.864,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Now here's something that I noticed on this phone that is different other problems the two things around",
+    "entries": [{"emotions": [{
+        "@id": "Entry27#time=251.52,257.43",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.03,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.134,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.96,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I want to phone comes out I always ground floor in in most cases there's a lower in in most cases i'll probably grab that one Check to see how good is and I know I can say lots of money especially want to do the same body",
+    "entries": [{"emotions": [{
+        "@id": "Entry28#time=257.75,270.6",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.027,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.035,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And that's what happened with this phone the case that I have is actually for the g four plus",
+    "entries": [{"emotions": [{
+        "@id": "Entry29#time=271.15,276.1",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.159,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.198,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.036,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "But if this is only the line up the same this is an actual tempered glass tempered glass with you for a plus into the debris and that went into so at the Price goes down i'll grab you four plus later on but not it's three Hundred bucks",
+    "entries": [{"emotions": [{
+        "@id": "Entry30#time=277.02,290.96",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.012,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.07,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "So the two things around and this phone",
+    "entries": [{"emotions": [{
+        "@id": "Entry31#time=292.01,294.47",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.325,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.187,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.939,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Some apps for some reason I don't know is just the processor and I think it might be because i've been going to the process of yet but this have a um it's not driving six fifteen",
+    "entries": [{"emotions": [{
+        "@id": "Entry32#time=294.89,306.46",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.029,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.03,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.915,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Now you'll see posted of places six seventeen but this model actually have a six fifty",
+    "entries": [{"emotions": [{
+        "@id": "Entry33#time=307.29,313.86",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.156,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.116,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.392,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And the six seventeen Price of the market but the two things around here",
+    "entries": [{"emotions": [{
+        "@id": "Entry34#time=314.81,319.87",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.327,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.183,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.587,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Couple with this this not there to fix it six process I don't think it's the best commendation i've had this problem before with another while I found I have a six fifteen and also the I don't three",
+    "entries": [{"emotions": [{
+        "@id": "Entry35#time=320.45,331.49",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.043,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.031,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.048,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "That's was super chappy super know this one is not laggy all by all means",
+    "entries": [{"emotions": [{
+        "@id": "Entry36#time=332.21,337.99",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.107,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.058,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.917,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Uh it's just a certain after paying don't know why they hang it on I don't think it be the application ten Or some games that we play",
+    "entries": [{"emotions": [{
+        "@id": "Entry37#time=338.28,348.06",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.01,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.092,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.948,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "But they'll play on on phone doesn't have as not that twenty",
+    "entries": [{"emotions": [{
+        "@id": "Entry38#time=348.63,351.76",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.331,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.219,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.927,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Trina weird about some of the apps on here hang and I don't know why it does that and",
+    "entries": [{"emotions": [{
+        "@id": "Entry39#time=352.15999999999997,358.5",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.107,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.101,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.876,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Happens is that a Deal breaker for me oh no no no i'm are grading purchased no no no they're way too Many things on this phone that problems out weight some of the so called contact my cat",
+    "entries": [{"emotions": [{
+        "@id": "Entry40#time=360.02,370.02",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.049,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.012,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.849,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "So the battery on this thing",
+    "entries": [{"emotions": [{
+        "@id": "Entry41#time=370.58,371.86",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.516,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.647,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.016,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "The three dozen of our vat around here",
+    "entries": [{"emotions": [{
+        "@id": "Entry42#time=372.25,374.22",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.472,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.625,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.517,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um there's no ultra Power saving us about everything to people know uh people say they seen me I get like eight to nine hours sometimes certain phone six hours here's what you do",
+    "entries": [{"emotions": [{
+        "@id": "Entry43#time=375.04,387.47",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.039,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.04,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.874,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "If you're not already doing this is what I like it because you were to do is what I do and is a battery",
+    "entries": [{"emotions": [{
+        "@id": "Entry44#time=388.28,393.81",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.075,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.157,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.009,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um at night but there's a ultra for Power mean know what i'm sleeping I turn on the cable because all the dust turn off locations in terms of all be it drops everything down you know it just keeps the a serious I don't",
+    "entries": [{"emotions": [{
+        "@id": "Entry45#time=394.06,407.02",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.073,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.006,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And I introduce a turn off your Power saving know what your sleeping you don't need notifications you're not looking at the phone you can't see it that'll save you a ton of battery now the moral duty for",
+    "entries": [{"emotions": [{
+        "@id": "Entry46#time=407.35,419.71",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.06,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.001,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.892,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "More it doesn't have in stock enjoy doesn't have as a period all all Power saving old",
+    "entries": [{"emotions": [{
+        "@id": "Entry47#time=420.07,426.57",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.099,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.107,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.974,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "That's four calls like cents an lg and they have the advantage on that because they have altered possibly militias things off we only get access to messaging",
+    "entries": [{"emotions": [{
+        "@id": "Entry48#time=427.14,436.22",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.02,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.041,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.14,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Okay wait a browser email if you to ask you something like that that is a huge plus",
+    "entries": [{"emotions": [{
+        "@id": "Entry49#time=436.45,442.27",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.087,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.079,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.965,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "For so what this phone I went to sleep and ninety eight percent",
+    "entries": [{"emotions": [{
+        "@id": "Entry50#time=442.48,448.24",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.112,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.095,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.989,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And I turned on this is just have a ultra Power know I turn on just a regular battery saver and it drops to ninety two percent",
+    "entries": [{"emotions": [{
+        "@id": "Entry51#time=448.52,458.17",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.048,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.015,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.988,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Uh overnight because all the notifications are still coming on fifteen",
+    "entries": [{"emotions": [{
+        "@id": "Entry52#time=458.89,462.64",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.168,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.216,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.786,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "So",
+    "entries": [{"emotions": [{
+        "@id": "Entry53#time=463.55,464.0",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.912,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.82,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.044,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um it's actually that's pretty good you know sip except about six five to six percent um but",
+    "entries": [{"emotions": [{
+        "@id": "Entry54#time=464.72,472.0",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.081,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.009,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.909,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Nonetheless",
+    "entries": [{"emotions": [{
+        "@id": "Entry55#time=472.69,473.57",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.74,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.655,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.911,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "It's still was dropping it was snowing in overnight so um",
+    "entries": [{"emotions": [{
+        "@id": "Entry56#time=474.38,479.35",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.112,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.161,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.155,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I think that of the stand by the time gonna be actually really really solid on this phone it's just that it's going to sit",
+    "entries": [{"emotions": [{
+        "@id": "Entry57#time=480.3,487.66",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.173,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.057,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.749,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Regardless so right now about a six percent less i've been",
+    "entries": [{"emotions": [{
+        "@id": "Entry58#time=488.08,492.85",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.153,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.177,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.241,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I mean I was in ninety two and I will go but using this office and then six percent and that's actually pretty good because i've been i've been on Reading and you know catching up social Media",
+    "entries": [{"emotions": [{
+        "@id": "Entry59#time=493.16,503.79",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.004,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.081,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.721,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "And it still shows to about three days left on battery a was a combination of you know mild uh tomorrow us what um",
+    "entries": [{"emotions": [{
+        "@id": "Entry60#time=504.11,511.79",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.124,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.051,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.005,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "You know just scanning to a certain last but um I should be able to I was it might not be able to get three days obviously what depends but um I would get at least I want the charges phone again probably until tomorrow that's for sure",
+    "entries": [{"emotions": [{
+        "@id": "Entry61#time=512.34,524.06",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.03,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.034,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Ah so high the phone um has been really good to me it's superb and I mean if is nine twenty million I think we've gotten our standards a little too high when it comes to on the phone And sorry the long time because they always seem to come by one i'm shooting in this area is go right up to my door hold on a sec",
+    "entries": [{"emotions": [{
+        "@id": "Entry62#time=524.7,544.64",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": -0.029,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.118,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "So after hi I am still high uh those few little minor things that out that might look like a con um but you know it might not happen for you not use some of those applications",
+    "entries": [{"emotions": [{
+        "@id": "Entry63#time=547.26,557.99",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.026,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.031,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.996,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um but nonetheless i've been super impressed with the camera and I love a doctor storage motorola and then she can always go to commit us about the storage",
+    "entries": [{"emotions": [{
+        "@id": "Entry64#time=558.36,567.99",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.046,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.004,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.124,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Thank you for that I was Samson would do that with their phones to to do my uh seven big thing move how to move application so that's the car well that it's not moving the entire Okay she's absolutely right because",
+    "entries": [{"emotions": [{
+        "@id": "Entry65#time=568.3,580.53",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.021,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.043,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I the manager cents on they don't have it out the store Jennifer it's frustrating and misleading and some people don't even have the option",
+    "entries": [{"emotions": [{
+        "@id": "Entry66#time=581.06,587.74",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.135,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.081,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.069,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um but the Point on here works really good um just uh six fifteen processor one i've always tried to straight away from um but I couldn't pass on this phone I really want this phone and",
+    "entries": [{"emotions": [{
+        "@id": "Entry67#time=588.74,599.97",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.016,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.023,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.897,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I wish I would've had a six digit user number I can that that's just killer but you know quite easily you know on here you know it's not and really really heavy so you don't need to six fifty-two it would be nice to have but it's not here",
+    "entries": [{"emotions": [{
+        "@id": "Entry68#time=600.15,614.39",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.04,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.03,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Other than and I think um the all you know you get that initial know your six I in about your New Purchase",
+    "entries": [{"emotions": [{
+        "@id": "Entry69#time=614.9,622.1",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.083,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.074,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.998,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Um the highs has one off but i'm still kind of pumped up",
+    "entries": [{"emotions": [{
+        "@id": "Entry70#time=622.75,625.62",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.236,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.219,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.861,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Little shocked with the the lang opening some of my one Or two maybe yeah but the overall experience is very fluid",
+    "entries": [{"emotions": [{
+        "@id": "Entry71#time=626.7,636.69",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.006,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.015,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.307,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Hands down a very nice experience and I I think you'd be Happy with this Purchase",
+    "entries": [{"emotions": [{
+        "@id": "Entry72#time=637.05,642.36",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.106,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.114,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.994,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "If you can catch this phone at the Deal one I still think this is a better Purchase a lot of all that how your phones they called three Or four times the cost for that",
+    "entries": [{"emotions": [{
+        "@id": "Entry73#time=642.62,652.26",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.012,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.047,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.999,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Uh well they also got to Point out on the body is actually Ridge Power button",
+    "entries": [{"emotions": [{
+        "@id": "Entry74#time=652.87,657.81",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.119,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.139,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.048,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Just like uh my mother experience an acc ten the problem is reason that feels",
+    "entries": [{"emotions": [{
+        "@id": "Entry75#time=658.0,664.36",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.063,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.139,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.95,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Fantastic us a little bit of a premium feel you know this a plastic around here uh that's actually",
+    "entries": [{"emotions": [{
+        "@id": "Entry76#time=664.9300000000001,670.67",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.18,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.157,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.99,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Pretty solid um but yeah this phone has been really good to me so far the last twenty four hours i've had any problems with it uh I don't consider application hanging a problem",
+    "entries": [{"emotions": [{
+        "@id": "Entry77#time=671.13,681.75",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.031,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.051,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.903,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "I really enjoyed this Cameron and it's just I think this is gonna be a phone that match up again is always keep the powerhouse uh the budget powerhouse well is I love the master going up against um",
+    "entries": [{"emotions": [{
+        "@id": "Entry78#time=682.37,695.79",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.061,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.012,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.071,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Other that I bring to my cattle dog um I love it I love asking them up uh I think that",
+    "entries": [{"emotions": [{
+        "@id": "Entry79#time=696.69,703.08",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": 0.06,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.126,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.987,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "This phone is like a standard for budgets homes this is a powerhouse Home with a beautiful display",
+    "entries": [{"emotions": [{
+        "@id": "Entry80#time=704.21,712.49",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.085,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.019,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.983,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "A n a really good Price and does cost more than this phone and uh this phone does have um",
+    "entries": [{"emotions": [{
+        "@id": "Entry81#time=713.05,719.84",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.084,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.045,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.75,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "As I live in better than the phone in some ways and i'll show you in a battle that I plan on putting up but at the height Man and i'm super excited to picked up the phone for a Hundred and forty nine bucks",
+    "entries": [{"emotions": [{
+        "@id": "Entry82#time=720.49,731.72",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.04,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.032,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "The about the store down here is such a huge plus something my phone up to over a Hundred days as it just think about that and I think I think I paid twenty nine dollars for my Hundred twenty gabe lex r",
+    "entries": [{"emotions": [{
+        "@id": "Entry83#time=731.99,743.0",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.044,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": -0.019,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Uh my first because takes my Purchase I know what the car a long time ago that takes my total package to about a Hundred eighty bucks Or so with taxes",
+    "entries": [{"emotions": [{
+        "@id": "Entry84#time=743.45,752.4",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.058,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.027,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.467,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Uh four Hundred and something be Hundred twenty a gate was just calling twenty uh mostly for uh just the market I think that's a fantastic Deal",
+    "entries": [{"emotions": [{
+        "@id": "Entry85#time=753.0,761.76",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.014,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.086,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.993,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "So should will uh this is after the hype with the moldy four plus what for a pretty much twenty four hours later I was uh i'm still high",
+    "entries": [{"emotions": [{
+        "@id": "Entry86#time=762.71,772.91",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:arousal": -0.045,
+                "confidence": 1
+            },
+            {
+                "emovoc:valence": 0.017,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.016,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Got I see there's a to get this phone I think you like",
+    "entries": [{"emotions": [{
+        "@id": "Entry87#time=774.22,777.8",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.265,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.172,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.892,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+,{
+    "@context": [{"emovoc": "http://www.gsi.dit.upm.es/ontologies/onyx/vocabularies/emotionml/ns"}],
+    "Text": "Think you should I put my glasses on the radio so right now",
+    "entries": [{"emotions": [{
+        "@id": "Entry88#time=778.83,782.25",
+        "prov:wasGeneratedBy": "me:SpeechAnalysis",
+        "onyx:hasEmotion": [
+            {
+                "emovoc:valence": 0.274,
+                "confidence": 1
+            },
+            {
+                "emovoc:arousal": 0.196,
+                "confidence": 1
+            },
+            {
+                "Sentiment": 0.359,
+                "confidence": 1
+            }
+        ]
+    }]}],
+    "analysis": [
+        {
+            "@type": "onyx:EmotionAnalysis",
+            "onyx:usesEmotionModel": "emovoc:pad-dimensions",
+            "@id": "me:SpeechAnalysis"
+        },
+        {"ASR": "Powered by Phonexia"}
+    ]
+}
+]
