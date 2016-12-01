@@ -35,6 +35,8 @@ object ServiceFactory {
   val PivotNamePath = "pivotName"
   val PivotIdPath = "pivotId"
   val PivotPathPath = "response.json.pivotPath"
+  val RequirementFieldPath = "requirementField"
+  val RequirementRegexPath = "requirementRegex"
 
 
 
@@ -120,8 +122,10 @@ object ServiceFactory {
     val pivotName: Option[String] = if(conf.hasPath(PivotNamePath)) Some(conf.getString(PivotNamePath)) else None
     val pivotId: Option[String] = if(conf.hasPath(PivotIdPath)) Some(conf.getString(PivotIdPath)) else None
     val pivotPath: Option[String] = if(conf.hasPath(PivotPathPath)) Some(conf.getString(PivotPathPath)) else None
+    val requirementField: Option[String] = if(conf.hasPath(RequirementFieldPath)) Some(conf.getString(RequirementFieldPath)) else None
+    val requirementRegex: Option[String] = if(conf.hasPath(RequirementRegexPath)) Some(conf.getString(RequirementRegexPath)) else None
     new ExecutableServiceConf(requestUrl, method, body, outputField, responsePath, responseMap, deleteString,
-      requestDelayMs, requestTimeoutMs, fileUploadConf, responseParseString, pivotPath,pivotName, pivotId)
+      requestDelayMs, requestTimeoutMs, fileUploadConf, responseParseString, pivotPath,pivotName, pivotId, requirementField, requirementRegex)
   }
 
 

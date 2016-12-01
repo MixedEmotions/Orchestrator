@@ -1,7 +1,7 @@
 import com.typesafe.config.ConfigException
 import org.scalamock.scalatest.MockFactory
 import services.{ServiceFactory, DockerService}
-import utilities.{DiscoveryService, MarathonDiscoveryService}
+import utilities.{RequestExecutor, DiscoveryService, MarathonDiscoveryService}
 
 import scala.util.parsing.json.JSON
 
@@ -28,7 +28,10 @@ class DockerServiceTest extends UnitSpec with MockFactory{
       val confPath = getClass.getResource("/dockerServices/spanish_topic_service.conf").toString.replaceFirst("file:","")
       val discovery = mock[DiscoveryService]
       (discovery.getIpAndPort _).expects("topic-container").returning(("localhost", 32770))
-      val dockerService = ServiceFactory.dockerServiceFromConfFile(confPath, discovery)
+      val requestExecutor = mock[RequestExecutor]
+      val queryExpected = "http://localhost:32770/?text=jefe"
+      (requestExecutor.executeRequest _).expects("GET", queryExpected, 100000, 500, None, None).returning("[\"DIRECTIVOS\"]")
+      val dockerService = ServiceFactory.dockerServiceFromConfFile(confPath, discovery, requestExecutor)
       val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
       dockerService.executeService(inputMap)
     }

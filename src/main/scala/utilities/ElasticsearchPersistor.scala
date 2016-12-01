@@ -70,15 +70,15 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
 
   }
 
-  def saveTweets(tweets: Seq[Map[String,Any]], documentType: String): Unit ={
-    logger.debug(s"Saving ${tweets.size} tweets in bulk")
+  def saveTweets(items: Seq[Map[String,Any]], documentType: String): Unit ={
+    logger.debug(s"Saving ${items.size} items in bulk")
      val resp = client.execute {
        bulk(
-         for(tweet<-tweets) yield {
-           if(tweet.contains("id")) {
-             index into indexName / documentType fields (tweet) id tweet("id")
+         for(item<-items) yield {
+           if(item.contains("id")) {
+             index into indexName / documentType fields (item) id item("id")
            }else{
-             index into indexName / documentType fields (tweet) //id tweet("id")
+             index into indexName / documentType fields (item) //id tweet("id")
            }
          }
            )

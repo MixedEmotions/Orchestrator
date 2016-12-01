@@ -20,7 +20,7 @@ import scala.util.{Failure, Success}
 object ListFutureOrchestrator {
   //val defaultConfFilePath = "/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/dockerProject.conf"
   //val confFilePath = "/home/cnavarro/projectManager/conf/docker.conf"
-  val logger = LoggerFactory.getLogger(FutureOrchestrator.getClass)
+  val logger = LoggerFactory.getLogger(ListFutureOrchestrator.getClass)
 
 
   def createConfigurationMap(confFilePath: String) : Config = {
@@ -56,7 +56,7 @@ object ListFutureOrchestrator {
 
     }
     Await.ready(Future.sequence(input), processingTimeOut )
-    logger.debug(s"I waited ${processingTimeOut} so I decided to finish")
+    logger.debug(s"Finished. Either it really finished or it hit a I waited ${processingTimeOut}ms timeout")
     bw.close()
   }
 
@@ -168,9 +168,11 @@ object ListFutureOrchestrator {
     logger.debug(s"Number of items after processing (resultJSON): ${futureResults.length}\n")
 
     if(configurationMap.hasPath("outputFilePath")){
+      logger.info("Going to write to file")
       saveListToFile(futureResults,configurationMap.getString("outputFilePath"), configurationMap.getInt("executionTimeoutSeconds") seconds)
     }
     if(configurationMap.hasPath("elasticsearch")){
+      logger.info("Going to save to Elasticsearch")
       saveListToElasticsearch(futureResults, configurationMap)
     }
 

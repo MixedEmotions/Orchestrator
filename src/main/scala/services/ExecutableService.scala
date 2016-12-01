@@ -30,25 +30,49 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
   val pivotPath = serviceConf.pivotPath
   val pivotName = serviceConf.pivotName
   val pivotId = serviceConf.pivotId
+  val requirementField = serviceConf.requirementField
+  val requirementRegex = serviceConf.requirementRegex
 
   def getIpAndPort(): (String, Int)
 
   def executeService(input: Map[String,Any]): Map[String, Any] ={
-    val (ip, port) = getIpAndPort()
+    if(requirementMet(input)){
+      val selectedResult = performExecution(input)
+      val result = input + ((outputField,selectedResult))
+      result
+    }else{
+      logger.debug(s"Requirement not met: ${requirementRegex} in ${requirementField}")
+      input
+    }
+    /*val (ip, port) = getIpAndPort()
     val url = ServiceConfCompleter.completeUrl(ip, port, requestUrl, input)
     logger.debug("Executing Service:"+url)
     val bodyContent = if(body.isDefined) Some(ServiceConfCompleter.completeBody(body.get, input)) else None
     val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
     val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
                                                   fileUploadData=fileUploadData)
-    logger.debug(s"Response: ${response}")
     val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, None)
     logger.debug(s"SelectedResult: ${selectedResult}")
     val result = input + ((outputField,selectedResult))
-    result
+    result*/
   }
 
-  def executeServiceAndObtainList(input: Map[String,Any]): List[Map[String, Any]] ={
+  def executeServiceAndObtainList(input: Map[String, Any]): List[Map[String, Any]] = {
+    if (requirementMet(input)) {
+      val selectedResult = performExecution(input)
+      if (pivotPath.isDefined) {
+        multiplyByPivot(selectedResult.asInstanceOf[List[Map[String, Any]]], input, pivotName.get, pivotId.get)
+      } else {
+        val result = input + ((outputField, selectedResult))
+        List(result)
+      }
+    } else {
+      logger.debug(s"Requirement not met: ${requirementRegex} in ${requirementField}")
+      List(input)
+    }
+  }
+
+  def performExecution(input: Map[String, Any]): Any = {
     val (ip, port) = getIpAndPort()
     val url = ServiceConfCompleter.completeUrl(ip, port, requestUrl, input)
     logger.debug("Executing Service:"+url)
@@ -56,15 +80,27 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
     val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
     val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
       fileUploadData=fileUploadData)
-    logger.debug(s"Response: ${response}")
+    //logger.debug(s"Response: ${response}")
     val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, pivotPath)
     logger.debug(s"SelectedResult: ${selectedResult}")
-    if(pivotPath.isDefined){
-      multiplyByPivot(selectedResult.asInstanceOf[List[Map[String,Any]]], input, pivotName.get, pivotId.get)
+    selectedResult
+  }
+
+  def requirementMet(input: Map[String, Any]): Boolean = {
+    if(requirementField.isEmpty || requirementRegex.isEmpty){
+      true
+    }else if(input.keySet.contains(requirementField.get)){
+      val value = input.get(requirementField.get).get.toString
+      val regex = requirementRegex.get.r
+      if(regex.findFirstIn(value).isDefined){
+        true
+      }else{
+        false
+      }
     }else{
-      val result = input + ((outputField,selectedResult))
-      List(result)
+      false
     }
+
   }
 
   def multiplyByPivot(resultList: List[Map[String, Any]], input: Map[String, Any], pivotName:String, pivotId: String): List[Map[String, Any]] = {

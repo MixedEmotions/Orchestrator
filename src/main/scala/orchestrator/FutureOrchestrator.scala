@@ -54,7 +54,8 @@ object FutureOrchestrator {
 
     }
     Await.ready(Future.sequence(input), processingTimeOut )
-    logger.debug(s"I waited ${processingTimeOut} so I decided to finish")
+    logger.debug(s"Finished. Either it really finished or it hit a ${processingTimeOut} timeout")
+
     bw.close()
   }
 
