@@ -1,17 +1,21 @@
-# Orchestrator
+# MixedEmotions' Orchestrator
 
-This MixedEmotions orchestrator was developed by Paradigma Digital 
+## Description
+
+This MixedEmotions Orchestrator was developed by Paradigma Digital.
 
 The code of this orchestrator will let users have an starting point on how to interact with the platform modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
 
 #THE FOLLOWING SECTIONS SHOULD BE CONSIDERED AS WORK IN PROGRESS
 
+# Installation
+This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-assembly 0.12.0.
+
 # Usage
-In the semanticsFolder/,  run the following command:
+Run the following command:
 
 
-java -cp  DockerSparkPipeline-assembly-0.14.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}
-
+`java -cp  DockerSparkPipeline-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
 
 
 # Configuration
