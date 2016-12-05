@@ -1,4 +1,7 @@
 # Orchestrator
+
+This MixedEmotions orchestrator was developed by Paradigma Digital 
+
 The code of this orchestrator will let users have an starting point on how to interact with the platform modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
 
 #THE FOLLOWING SECTIONS SHOULD BE CONSIDERED AS WORK IN PROGRESS
@@ -149,3 +152,12 @@ Most of the fields of the Docker conf file are equal to the ones in Rest configu
 # Input File
 The input file must be formed of valid json maps, one on each line.
 
+## Acknowledgement
+
+This orchestrator was developed by [Paradigma Digital](https://en.paradigmadigital.com/) as part of the MixedEmotions project. This development has been partially funded by the European Union through the MixedEmotions Project (project number H2020 655632), as part of the `RIA ICT 15 Big data and Open Data Innovation and take-up` programme.
+
+![MixedEmotions](img/me.png) 
+
+![EU](img/eu-flag.jpg)
+
+ http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/index.html
