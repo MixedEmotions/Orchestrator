@@ -4,7 +4,7 @@
 
 This MixedEmotions Orchestrator was developed by Paradigma Digital.
 
-The code of this orchestrator will let users have an starting point on how to interact with the platform modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
+The code of this orchestrator will let users have an starting point on how to interact with the MixedEmotion Toolbox modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
 
 #THE FOLLOWING SECTIONS SHOULD BE CONSIDERED AS WORK IN PROGRESS
 
