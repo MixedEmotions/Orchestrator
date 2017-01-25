@@ -15,7 +15,7 @@ This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-
 Run the following command:
 
 
-`java -cp  DockerSparkPipeline-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
+`java -cp  MixedEmotionsExampleOrchestrator-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
 
 
 # Configuration
@@ -147,7 +147,7 @@ responsePath = "result.concepts"`
 
 
 
-Most of the fields of the Docker conf file are equal to the ones in Rest configuration files. Refer to the section above for those.
+Most of the fields of the Docker conf file are equal to the ones in Rest configuration files. Refer to the section above for those. The only fields that change are **ip** and **port** which are substituted by **serviceId**.
 * **serviceId**: The marathon Id for that service
 
 
