@@ -11,6 +11,9 @@ The code of this orchestrator will let users have an starting point on how to in
 # Installation
 This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-assembly 0.12.0.
 
+# Compile
+sbt assembly
+
 # Usage
 Run the following command:
 
