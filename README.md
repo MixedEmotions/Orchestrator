@@ -4,18 +4,21 @@
 
 This MixedEmotions Orchestrator was developed by Paradigma Digital.
 
-The code of this orchestrator will let users have an starting point on how to interact with the platform modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
+The code of this orchestrator will let users have an starting point on how to interact with the MixedEmotion Toolbox modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
 
 #THE FOLLOWING SECTIONS SHOULD BE CONSIDERED AS WORK IN PROGRESS
 
 # Installation
 This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-assembly 0.12.0.
 
+# Compile
+sbt assembly
+
 # Usage
 Run the following command:
 
 
-`java -cp  DockerSparkPipeline-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
+`java -cp  MixedEmotionsExampleOrchestrator-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
 
 
 # Configuration
@@ -147,7 +150,7 @@ responsePath = "result.concepts"`
 
 
 
-Most of the fields of the Docker conf file are equal to the ones in Rest configuration files. Refer to the section above for those.
+Most of the fields of the Docker conf file are equal to the ones in Rest configuration files. Refer to the section above for those. The only fields that change are **ip** and **port** which are substituted by **serviceId**.
 * **serviceId**: The marathon Id for that service
 
 
@@ -160,8 +163,8 @@ The input file must be formed of valid json maps, one on each line.
 
 This orchestrator was developed by [Paradigma Digital](https://en.paradigmadigital.com/) as part of the MixedEmotions project. This development has been partially funded by the European Union through the MixedEmotions Project (project number H2020 655632), as part of the `RIA ICT 15 Big data and Open Data Innovation and take-up` programme.
 
-![MixedEmotions](http://mixedemotions-project.eu/wp-content/uploads/2015/04/ME-Logo-125h.png) 
+![MixedEmotions](https://raw.githubusercontent.com/MixedEmotions/MixedEmotions/master/img/me.png) 
 
-![EU](img/eu-flag.jpg)
+![EU](https://raw.githubusercontent.com/MixedEmotions/MixedEmotions/master/img/H2020-Web.png)
 
  http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/index.html
