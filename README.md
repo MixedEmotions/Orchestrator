@@ -13,6 +13,7 @@ This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-
 
 # Compile
 sbt assembly
+You can find compiled jars in the [releases section](https://github.com/MixedEmotions/Orchestrator/releases) of this github.
 
 # Usage
 Run the following command:
