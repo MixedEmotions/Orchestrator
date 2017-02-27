@@ -37,6 +37,7 @@ object ServiceFactory {
   val PivotPathPath = "response.json.pivotPath"
   val RequirementFieldPath = "requirementField"
   val RequirementRegexPath = "requirementRegex"
+  val PollingCondition = "polling.condition"
 
 
 
@@ -69,6 +70,7 @@ object ServiceFactory {
     }
   }
 
+  //this is the real execute
   def createAndExecuteListService(serviceName: String, configurationMap: Config): List[String] => List[String] = {
     logger.debug(s"Going to create and execute ${serviceName}")
     if(serviceName.startsWith("rest")){
@@ -77,7 +79,7 @@ object ServiceFactory {
     }else if(serviceName.startsWith("docker")){
       val service = dockerService(serviceName.replace("docker_",""), configurationMap)
       service.executeServiceAsFlatMap
-    }else {
+    } else {
       throw new Exception(s"Service name '${serviceName}' starts with an unknown type. Service names should start with 'rest_' or 'docker_'")
     }
   }
@@ -124,8 +126,9 @@ object ServiceFactory {
     val pivotPath: Option[String] = if(conf.hasPath(PivotPathPath)) Some(conf.getString(PivotPathPath)) else None
     val requirementField: Option[String] = if(conf.hasPath(RequirementFieldPath)) Some(conf.getString(RequirementFieldPath)) else None
     val requirementRegex: Option[String] = if(conf.hasPath(RequirementRegexPath)) Some(conf.getString(RequirementRegexPath)) else None
+    val pollingCondition: Option[String] = if(conf.hasPath(PollingCondition)) Some(conf.getString(PollingCondition)) else None
     new ExecutableServiceConf(requestUrl, method, body, outputField, responsePath, responseMap, deleteString,
-      requestDelayMs, requestTimeoutMs, fileUploadConf, responseParseString, pivotPath,pivotName, pivotId, requirementField, requirementRegex)
+      requestDelayMs, requestTimeoutMs, fileUploadConf, responseParseString, pivotPath,pivotName, pivotId, requirementField, requirementRegex, pollingCondition)
   }
 
 

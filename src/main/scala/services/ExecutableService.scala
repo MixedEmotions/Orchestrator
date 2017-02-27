@@ -32,6 +32,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
   val pivotId = serviceConf.pivotId
   val requirementField = serviceConf.requirementField
   val requirementRegex = serviceConf.requirementRegex
+  val pollingCondition = serviceConf.pollingCondition
 
   def getIpAndPort(): (String, Int)
 
@@ -44,19 +45,10 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
       logger.debug(s"Requirement not met: ${requirementRegex} in ${requirementField}")
       input
     }
-    /*val (ip, port) = getIpAndPort()
-    val url = ServiceConfCompleter.completeUrl(ip, port, requestUrl, input)
-    logger.debug("Executing Service:"+url)
-    val bodyContent = if(body.isDefined) Some(ServiceConfCompleter.completeBody(body.get, input)) else None
-    val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
-    val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
-                                                  fileUploadData=fileUploadData)
-    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, None)
-    logger.debug(s"SelectedResult: ${selectedResult}")
-    val result = input + ((outputField,selectedResult))
-    result*/
+
   }
 
+  //this is the real execute
   def executeServiceAndObtainList(input: Map[String, Any]): List[Map[String, Any]] = {
     if (requirementMet(input)) {
       val selectedResult = performExecution(input)
@@ -72,17 +64,28 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
     }
   }
 
+  //check if polling is defined the status
   def performExecution(input: Map[String, Any]): Any = {
     val (ip, port) = getIpAndPort()
     val url = ServiceConfCompleter.completeUrl(ip, port, requestUrl, input)
     logger.debug("Executing Service:"+url)
     val bodyContent = if(body.isDefined) Some(ServiceConfCompleter.completeBody(body.get, input)) else None
     val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
+
     val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
       fileUploadData=fileUploadData)
     //logger.debug(s"Response: ${response}")
-    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, pivotPath)
+    val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, pivotPath, pollingCondition)
     logger.debug(s"SelectedResult: ${selectedResult}")
+    if(pollingCondition.isDefined){
+      if(!selectedResult.asInstanceOf[Some[List[String]]].get.contains(pollingCondition.get)){
+        logger.debug("response service polling: "+selectedResult)
+        performExecution(input)
+      } else{
+        logger.debug("polling condition is DONE: "+selectedResult)
+      }
+    }
+
     selectedResult
   }
 
@@ -115,7 +118,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
   }
 
   def parseResponse(response: String, responsePath: Option[String], responseMap: Option[Map[String,String]],
-                    responseParseString: Option[String], pivotPath: Option[String]) : Any = {
+                    responseParseString: Option[String], pivotPath: Option[String], pollingCondition: Option[String]) : Any = {
     if(responseParseString.isDefined){
       val pattern = new Regex(responseParseString.get)
       val matchData = pattern.findFirstMatchIn(response)
@@ -124,10 +127,11 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
       }else{
         logger.debug(s"Pattern ${responseParseString.get} not found in ${response}")
       }
-    }else if(pivotPath.isDefined){
-      JsonPathsTraversor.getJsonFlatMap(responseMap.get,pivotPath.get, response, deleteString)
+    }else if(pivotPath.isDefined) {
+      JsonPathsTraversor.getJsonFlatMap(responseMap.get, pivotPath.get, response, deleteString)
 
-
+    }else if(pollingCondition.isDefined){
+      JsonPathsTraversor.getJsonPath(responsePath.get, response, deleteString)
     }else if(responseMap.isDefined){
       JsonPathsTraversor.getJsonMapPath(responseMap.get, response, deleteString)
     }else if(responsePath.isDefined){
@@ -164,6 +168,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
 
   }
 
+  //this is the real service
   def executeServiceAsList(jsonString: String): List[String] = {
     val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
     temp match {
