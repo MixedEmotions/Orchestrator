@@ -30,26 +30,26 @@ Run the following command:
 Example:
 
 
-languages = ["es", "en"]
-modules = ["rest_topic_local","rest_concept_local","docker_spanish_topic_service"]
-elasticsearch {
- ip = "mixednode2back"
- port = 9300
- clusterName = "Mixedemotions Elasticsearch"
- indexName = "myanalyzed"
-}
-mesos_dns {
- ip="mixednode2back"
- port=8123
-}
+	languages = ["es", "en"]
+	modules = ["rest_topic_local","rest_concept_local","docker_spanish_topic_service"]
+	elasticsearch {
+	 ip = "mixednode2back"
+	 port = 9300
+	 clusterName = "Mixedemotions Elasticsearch"
+	 indexName = "myanalyzed"
+	}
+	mesos_dns {
+	 ip="mixednode2back"
+	 port=8123
+	}
 
 
 
 
-docker_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/dockerServices/"
-rest_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/restServices/"
-outputFilePath="/home/cnavarro/workspace/mixedemotions/temp/scalaOutputOut.txt"
-executionTimeoutSeconds=500
+	docker_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/dockerServices/"
+	rest_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/restServices/"
+	outputFilePath="/home/cnavarro/workspace/mixedemotions/temp/scalaOutputOut.txt"
+	executionTimeoutSeconds=500
 
 
 
@@ -82,15 +82,16 @@ There are two kinds of service configuration file, the rest configuration files 
 ### Rest Service Conf File
 
 Example:
-ip = "localhost"
-port = 32769
-method = "GET"
-requestUrl = "?text=${text}"
-outputField = "concepts"
-response.json.path = "result.concepts"
-body = ""
-requestDelayMs=500
-requestTimeoutSeconds=300
+
+	ip = "localhost"
+	port = 32769
+	method = "GET"
+	requestUrl = "?text=${text}"
+	outputField = "concepts"
+	response.json.path = "result.concepts"
+	body = ""
+	requestDelayMs=500
+	requestTimeoutSeconds=300
 
 
 
@@ -143,15 +144,16 @@ In this case, the service is called by a GET request to http://localhost:32769/?
 Example conf file:
 
 
-`serviceId = "concept-container"
-requestUrl = "/?text=${text}"
-outputField = "concepts"
-method = "GET"
-responsePath = "result.concepts"`
+	serviceId = "concept-container"
+	requestUrl = "/?text=${text}"
+	outputField = "concepts"
+	method = "GET"
+	responsePath = "result.concepts"
 
 
 
 Most of the fields of the Docker conf file are equal to the ones in Rest configuration files. Refer to the section above for those. The only fields that change are **ip** and **port** which are substituted by **serviceId**.
+
 * **serviceId**: The marathon Id for that service
 
 
