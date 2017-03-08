@@ -1,0 +1,93 @@
+{
+  "@context": "http://reed.gsi.dit.upm.es:4000/api/contexts/Results.jsonld",
+  "@id": "Results_1468239762.55",
+  "analysis": [
+    {
+      "@id": "sentiText",
+      "@type": "marl:SentimentAnalysis",
+      "author": "@icorcuera",
+      "corpus_en": "/senpy-plugins/enterprise/sentiText/Corpus/sentiment140-dataset.txt",
+      "corpus_es": "/senpy-plugins/enterprise/sentiText/Corpus/general-tweets-train-tagged.json",
+      "description": "Sentiment classifier using rule-based classification based on English and Spanish",
+      "dictionary_en": "/senpy-plugins/enterprise/sentiText/Dictionaries/SentiWordNet_3.0.0_20100705.txt",
+      "dictionary_es": "/senpy-plugins/enterprise/sentiText/Dictionaries/ElhPolar_esV1.lex.txt",
+      "emoticons": "/senpy-plugins/enterprise/sentiText/Dictionaries/EmoticonSentimentLexicon.txt",
+      "extra_params": {
+        "language": {
+          "aliases": [
+            "language",
+            "l",
+            "lang"
+          ],
+          "default": "en",
+          "options": [
+            "es",
+            "en"
+          ],
+          "required": true
+        }
+      },
+      "info": {
+        "author": "@icorcuera",
+        "corpus_en": "/Corpus/sentiment140-dataset.txt",
+        "corpus_es": "/Corpus/general-tweets-train-tagged.json",
+        "description": "Sentiment classifier using rule-based classification based on English and Spanish",
+        "dictionary_es": "/Dictionaries/ElhPolar_esV1.lex.txt",
+        "emoticons": "/Dictionaries/EmoticonSentimentLexicon.txt",
+        "extra_params": {
+          "language": {
+            "aliases": [
+              "language",
+              "l",
+              "lang"
+            ],
+            "default": "en",
+            "options": [
+              "es",
+              "en"
+            ],
+            "required": true
+          }
+        },
+        "module": "sentiText",
+        "name": "sentiText",
+        "requirements": {},
+        "sentiwordnet_en": "/Dictionaries/SentiWordNet_3.0.0_20100705.txt",
+        "stopwords_en": "/Dictionaries/ENG/stopwords.txt",
+        "stopwords_es": "/Dictionaries/SPA/stopwords.txt",
+        "version": "0.1"
+      },
+      "is_activated": true,
+      "local_path": "/senpy-plugins/enterprise/sentiText",
+      "maxPolarityValue": 1.0,
+      "minPolarityValue": 0.0,
+      "module": "sentiText",
+      "name": "sentiText",
+      "requirements": {},
+      "sentiwordnet_en": "/Dictionaries/SentiWordNet_3.0.0_20100705.txt",
+      "stopwords_en": "/senpy-plugins/enterprise/sentiText/Dictionaries/ENG/stopwords.txt",
+      "stopwords_es": "/senpy-plugins/enterprise/sentiText/Dictionaries/SPA/stopwords.txt",
+      "version": "0.1"
+    }
+  ],
+  "entries": [
+    {
+      "@id": "Entry0",
+      "nif_isString": "The new Star Wars film is awesome, but maybe it is just for fans. You will not enjoy it anyway",
+      "sentiments": [
+        {
+          "@id": "Opinion0",
+          "marl:hasPolarity": "marl:Positive",
+          "marl:polarityValue": "1",
+          "prov:wasGeneratedBy": "sentiText"
+        },
+        {
+          "@id": "Opinion0",
+          "marl:hasPolarity": "marl:Positive",
+          "marl:polarityValue": "1",
+          "prov:wasGeneratedBy": "sentiText"
+        }
+      ]
+    }
+  ]
+}
