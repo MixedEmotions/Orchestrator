@@ -160,6 +160,9 @@ Most of the fields of the Docker conf file are equal to the ones in Rest configu
 # Input File
 The input file must be formed of valid json maps, one on each line.
 
+# More info
+More info and advanced examples of Orchestrator configuration can be found in this repository's [wiki](https://github.com/MixedEmotions/Orchestrator/wiki).
+
 ## Acknowledgement
 
 This orchestrator was developed by [Paradigma Digital](https://en.paradigmadigital.com/) as part of the MixedEmotions project. This development has been partially funded by the European Union through the MixedEmotions Project (project number H2020 655632), as part of the `RIA ICT 15 Big data and Open Data Innovation and take-up` programme.
