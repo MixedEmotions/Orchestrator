@@ -6,7 +6,7 @@ This MixedEmotions Orchestrator was developed by Paradigma Digital.
 
 The code of this orchestrator will let users have an starting point on how to interact with the MixedEmotion Toolbox modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
 
-#THE FOLLOWING SECTIONS SHOULD BE CONSIDERED AS WORK IN PROGRESS
+
 
 # Installation
 This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-assembly 0.12.0.
