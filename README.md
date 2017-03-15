@@ -4,7 +4,7 @@
 
 This MixedEmotions Orchestrator was developed by Paradigma Digital.
 
-The code of this orchestrator will let users have an starting point on how to interact with the MixedEmotion Toolbox modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service.
+The code of this orchestrator will let users have an starting point on how to interact with the MixedEmotion Toolbox modules. It is written in scala and can interact with RESTservices and DockerServices deployed in Mesos with a Mesos-DNS as a discovery service. The orchestrator will execute input documents in a pipeline with the defined modules.
 
 
 
@@ -12,25 +12,28 @@ The code of this orchestrator will let users have an starting point on how to in
 This project has been compiled using java 1.8, scala 2.10.4, sbt 0.13.5 and sbt-assembly 0.12.0.
 
 # Compile
-sbt assembly
-You can find compiled jars in the [releases section](https://github.com/MixedEmotions/Orchestrator/releases) of this github.
+To compile the project use `sbt assembly`.
+
+Compiled jars can be found in the [releases section](https://github.com/MixedEmotions/Orchestrator/releases) of this repository.
 
 # Usage
 Run the following command:
 
 
-`java -cp  MixedEmotionsExampleOrchestrator-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
+`java -cp  MixedEmotionsExampleOrchestrator-assembly-x.x.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
+
+Where x.x is the release version of the jar, `{confFilePath}` is the pipeline configuration and `{inputPath}` is the path to the input file containing documents to be processed. The pipeline configuration main task is to define the sequence of modules to be called. The input file should be formed by jsons, each in a single line.
 
 
 # Configuration
 
-## General Configuration File
+## Pipeline Configuration File
 
+This configuration file main task is to define which modules are to be used and in which order. It also defines the output to be used (elasticsearch and/or file) and general configurations, such mesos-dns configuration and a global timeout for the process.
 
 Example:
 
 
-	languages = ["es", "en"]
 	modules = ["rest_topic_local","rest_concept_local","docker_spanish_topic_service"]
 	elasticsearch {
 	 ip = "mixednode2back"
@@ -42,13 +45,9 @@ Example:
 	 ip="mixednode2back"
 	 port=8123
 	}
-
-
-
-
-	docker_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/dockerServices/"
-	rest_conf_folder="/home/cnavarro/workspace/mixedemotions/me_extractors/DockerSparkPipeline/src/main/resources/restServices/"
-	outputFilePath="/home/cnavarro/workspace/mixedemotions/temp/scalaOutputOut.txt"
+    docker_conf_folder="/some/absolute/path/dockerServices/"
+	rest_conf_folder="/some/absolute/path/restServices/"
+	outputFilePath="/some/absolute/path/output.txt"
 	executionTimeoutSeconds=500
 
 
@@ -57,27 +56,28 @@ Example:
 Fields description
 
  
-* **modules**: Modules to be executed, in order. There are 2 types of modules: rest and docker modules. The modules names will be the configuration file name, preceded by “rest” or “docker”. The configuration file for the module should be in the corresponding folder and should end in ‘.conf’ .
-* **elasticsearch**: Not used in the tutorial.
-* **mesos-dns**: Address of the Mesos-dns api
-* **docker_conf_folder**: Folder with the docker modules configurations.
-* **rest_conf_folder**: Folder with the rest modules configurations.
-* **output_file_path**: File in which the output will be wrote
-* **ExecutionTimeoutSeconds**: Maximum number of seconds the application has to run or else will fail
+* **modules**: modules to be executed, in order. There are 2 types of modules: rest and docker modules. The modules names will be the configuration file name, preceded by “rest” or “docker”. The configuration file for the module should be in the corresponding folder and should end in ‘.conf’ .
+* **elasticsearch**: if present, elasticsearch where to send the results.
+* **mesos-dns**: address of the Mesos-dns api
+* **docker_conf_folder**: folder with the docker modules configurations.
+* **rest_conf_folder**: folder with the rest modules configurations.
+* **output_file_path**: file in which the output will be wrote.
+* **ExecutionTimeoutSeconds**: maximum number of seconds the application has to run or else will fail.
 
 
 
 
-As stated earlier, there are two types of services: docker and rest services. Each of them will have its configuration files in a different folder. The name of the configuration file should end in ‘.conf’ and be the name present in the ‘modules’ param, minus the ‘rest/docker_’ header.
+As stated earlier, there are two types of services: docker and rest services. Each of them will have its configuration files in a different folder. The name of the configuration file should end in ‘.conf’ and be the name present in the ‘modules’ param, minus the `rest_` or `docker_` header.
 
 
-For example, if I have this modules attribute: `[“rest_service1”, “docker_service2”]`, in the folder stated in the “docker_conf_folder” attribute there should be a “service2.conf” file, and in the folder stated in “rest_conf_folder” there should be a “service1.conf” file.
+For example, if I have this modules attribute: `[“rest_service1”, “docker_service2”]`, the folder stated in the “docker_conf_folder” attribute should contain a `“service2.conf”` file, and in the folder stated in `“rest_conf_folder”` there should be a `“service1.conf”` file.
 
 
 
 
 ## Service Conf File
-There are two kinds of service configuration file, the rest configuration files and the docker configuration files. The fields in them are almost identical, excepting ip and port, that are unique for the rest services and the serviceId which is unique for the Docker services.
+
+There are two kinds of service configuration files, the rest configuration files and the docker configuration files. The fields in them are almost identical, excepting ip and port, that are unique for the rest services and the serviceId which is unique for the Docker services.
 
 ### Rest Service Conf File
 
@@ -126,8 +126,8 @@ In this case, the service is called by a GET request to http://localhost:32769/?
 	 `{“id”:132, “lang”:”es”, “text”:”some text to analyze”, “concepts”:[“banking”, “loan”]}`
 * **body** (optional): For POST requests, the key of the input json that will be used as body. For example if `body=”videoPath”` and the input json is: `{“id”:132, “lang”:”es”,”videoPath”:”/home/videos/video”}`
  The content of the body will be `“/home/videos/video”`.
-* **RequestDelayMs**: Delay before http requests. Useful if the server might not be able to handle all the requests at once. Defaults to 500
-* **RequestTimeoutSeconds**: Time to wait before considering a request failed. Useful if there are services that can halt unexpectedly and never return an error message. Defaults to 100.
+* **requestDelayMs**: Delay before http requests. Useful if the server might not be able to handle all the requests at once. Defaults to 500
+* **requestTimeoutSeconds**: Time to wait before considering a request failed. Useful if there are services that can halt unexpectedly and never return an error message. Defaults to 100.
 
 
 
