@@ -34,7 +34,7 @@ This configuration file main task is to define which modules are to be used and 
 Example:
 
 
-	modules = ["rest_topic_local","rest_concept_local","docker_spanish_topic_service"]
+	modules = ["rest_some_external_service","docker_sentiment_extraction","docker_emotion_recognition"]
 	elasticsearch {
 	 ip = "mixednode2back"
 	 port = 9300
@@ -56,7 +56,7 @@ Example:
 Fields description
 
  
-* **modules**: modules to be executed, in order. There are 2 types of modules: rest and docker modules. The modules names will be the configuration file name, preceded by “rest” or “docker”. The configuration file for the module should be in the corresponding folder and should end in ‘.conf’ .
+* **modules**: modules to be executed, in order. There are 2 types of modules: rest and docker modules. The modules names will be the configuration file name, preceded by “rest” or “docker”. The configuration file for the module should be in the corresponding folder and should end in ‘.conf’. So, for the previous example, there should be a module configuration in `/some/absolute/path/restServices/some_external_service.conf`, in `/some/absolute/path/dockerServices/sentiment_extraction.conf`.
 * **elasticsearch**: if present, elasticsearch where to send the results.
 * **mesos-dns**: address of the Mesos-dns api
 * **docker_conf_folder**: folder with the docker modules configurations.
@@ -79,25 +79,50 @@ For example, if I have this modules attribute: `[“rest_service1”, “docker_
 
 There are two kinds of service configuration files, the rest configuration files and the docker configuration files. The fields in them are almost identical, excepting ip and port, that are unique for the rest services and the serviceId which is unique for the Docker services.
 
-### Rest Service Conf File
-
 Example:
 
 	ip = "localhost"
 	port = 32769
 	method = "GET"
 	requestUrl = "?text=${text}"
-	outputField = "concepts"
-	response.json.path = "result.concepts"
+	outputField = "emotions"
+	response.json.path = "result.emotions"
 	body = ""
 	requestDelayMs=500
 	requestTimeoutSeconds=300
 
+In this case, the service is called by a GET request to the endpoint. Then, the result is searched in the response and put into the concepts. A delay of 500ms is put before calls to not overwhelm the service. If the whole processing for all files is not completed after 300 seconds, the orchestrator will stop launching a TimeoutException.
+
+So, if the input file has this json as a line
+
+    {"author": "someguy",
+     "lang": "en",
+     "text": "I love this",
+    }
+    
+The orchestrator will wait 500ms and then make the request http://localhost:32769?text="I+love+this". That can responde like with these:
+
+    {"header": {
+	"time": "500 ms",
+	"algorithm": "algo1"
+      },
+      "result": {
+	"emotions": ["joy", "anger"]
+      }
+    }
+      
+Then the final result will be:
+
+    {"author": "someguy",
+     "lang": "en",
+     "text": "I love this",
+     "emotions": ["joy","anger"]
+    }
 
 
+Following there is an explanation of the fields that can be used in modules configuration files.
 
-In this case, the service is called by a GET request to http://localhost:32769/?text=”the+text+to+analyze”
-
+### Rest Service Conf File
 
 * **ip**: address of the host
 * **port**: port of the host. (If the service does not use a port, just an address, this should be set to 80)
@@ -128,8 +153,7 @@ In this case, the service is called by a GET request to http://localhost:32769/?
  The content of the body will be `“/home/videos/video”`.
 * **requestDelayMs**: Delay before http requests. Useful if the server might not be able to handle all the requests at once. Defaults to 500
 * **requestTimeoutSeconds**: Time to wait before considering a request failed. Useful if there are services that can halt unexpectedly and never return an error message. Defaults to 100.
-
-
+* **polling.condition**: If present, the orchestrator will retry this module until the field defined in `response.json.path` contains the value of this field.
 
 
 
