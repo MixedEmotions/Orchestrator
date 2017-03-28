@@ -84,7 +84,7 @@ class RESTServiceTest extends UnitSpec with MockFactory{
       val confPath = getClass.getResource("/restServices/test_extract_audioinfo.conf").toString.replaceFirst("file:", "")
       val requestExecutor = mock[RequestExecutor]
       val queryExpected = "http://audioservice.com:8080/er/aer/getdims?dims=arousal,valence,sentiment&url=Moto_G4_english_review.mp4&timing=asr"
-      (requestExecutor.executeRequest _).expects("GET", queryExpected, 3000000, 500, None, None).returning(asrJsonString)
+      (requestExecutor.executeRequest _).expects("GET", queryExpected, 3000000, 500, None, None, "application/json").returning(asrJsonString)
       val restService = ServiceFactory.restServiceFromConfFile(confPath, requestExecutor)
       val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
       restService.executeServiceAndObtainList(inputMap)
