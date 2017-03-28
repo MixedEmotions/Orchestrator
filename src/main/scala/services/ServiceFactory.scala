@@ -38,7 +38,7 @@ object ServiceFactory {
     val confFolder = configurationMap.getString("docker_conf_folder")
     val confPath = confFolder + serviceName + ".conf"
     val discoveryService = new MarathonDiscoveryService(configurationMap.getString("mesos_dns.ip"), configurationMap.getInt("mesos_dns.port"))
-    ServiceFactory.dockerServiceFromConfFile(confPath, discoveryService)
+    ServiceFactory.dockerServiceFromConfFile(serviceName, confPath, discoveryService)
   }
 
 
@@ -46,7 +46,7 @@ object ServiceFactory {
     val serviceName = restServiceName.replace("rest_", "")
     val confFolder = configurationMap.getString("rest_conf_folder")
     val confPath = confFolder + serviceName + ".conf"
-    ServiceFactory.restServiceFromConfFile(confPath)
+    ServiceFactory.restServiceFromConfFile(serviceName, confPath)
   }
 
 
@@ -56,7 +56,7 @@ object ServiceFactory {
    * @param requestExecutor is an optional param, only intended to be defined in tests, leave blank otherwise.
    * @return created RESTService
    */
-  def restServiceFromConfFile(confPath: String, requestExecutor: RequestExecutor = new HttpRequestExecutor): RESTService = {
+  def restServiceFromConfFile(serviceName: String, confPath: String, requestExecutor: RequestExecutor = new HttpRequestExecutor): RESTService = {
     val confFile = new File(confPath)
     if(!confFile.exists() || confFile.isDirectory()) {
       throw new Exception(s"Could not find service configuration file: '${confPath}'")
@@ -64,7 +64,7 @@ object ServiceFactory {
     val parsedConf = ConfigFactory.parseFile(confFile)
     val conf = ConfigFactory.load(parsedConf)
     val executableServiceConf = ExecutableServiceConf.createServiceConf(conf)
-    new RESTService(conf.getString(ExecutableServiceConf.IpPath), conf.getInt(ExecutableServiceConf.PortPath), executableServiceConf, requestExecutor)
+    new RESTService(serviceName, conf.getString(ExecutableServiceConf.IpPath), conf.getInt(ExecutableServiceConf.PortPath), executableServiceConf, requestExecutor)
   }
 
   /**
@@ -74,7 +74,7 @@ object ServiceFactory {
    * @param requestExecutor is an optional param, only intended to be defined in tests, leave blank otherwise.
    * @return created RESTService
    */
-  def dockerServiceFromConfFile(confPath: String, discoveryService: DiscoveryService, requestExecutor: RequestExecutor = new HttpRequestExecutor): DockerService ={
+  def dockerServiceFromConfFile(serviceName: String, confPath: String, discoveryService: DiscoveryService, requestExecutor: RequestExecutor = new HttpRequestExecutor): DockerService ={
     val confFile = new File(confPath)
     if(!confFile.exists() || confFile.isDirectory()) {
       throw new Exception(s"Could not find service configuration file: '${confPath}'")
@@ -82,7 +82,7 @@ object ServiceFactory {
     val parsedConf = ConfigFactory.parseFile(confFile)
     val conf = ConfigFactory.load(parsedConf)
     val executableServiceConf = ExecutableServiceConf.createServiceConf(conf)
-    new DockerService(conf.getString(ExecutableServiceConf.ServiceIdPath), discoveryService, executableServiceConf, requestExecutor)
+    new DockerService(serviceName, conf.getString(ExecutableServiceConf.ServiceIdPath), discoveryService, executableServiceConf, requestExecutor)
   }
 
 

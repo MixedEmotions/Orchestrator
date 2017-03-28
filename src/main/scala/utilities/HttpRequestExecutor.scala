@@ -55,9 +55,9 @@ object HttpRequestExecutor {
     Thread.sleep(requestDelayMs)
     try {
       logger.debug(s"Executing query ${query}")
-      logger.debug(s"Waiting response for ${requestTimeoutMs} ms")
+      logger.trace(s"Waiting response for ${requestTimeoutMs} ms")
       val response: HttpResponse[String] = Http(query).header("content-type",contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
-      logger.debug(s"Got response")
+      logger.trace(s"Got response")
       if (response.isError) {
         logger.error(s"HttpError: $query . ${response.body} ${response.code}")
         "{}"

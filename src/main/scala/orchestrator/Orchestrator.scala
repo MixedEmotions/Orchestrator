@@ -35,7 +35,7 @@ object Orchestrator {
 
 
   def saveListToFile(input: List[Future[List[String]]], outputPath:String, processingTimeOut: Duration): Unit ={
-    logger.info(s"Writing into ${outputPath} ")
+    logger.info(s"Will write into ${outputPath} ")
     val file = new File(outputPath)
     val bw = new BufferedWriter(new FileWriter(file))
     for(line<-input){
@@ -52,7 +52,7 @@ object Orchestrator {
 
     }
     Await.ready(Future.sequence(input), processingTimeOut )
-    logger.debug(s"Finished. Either it really finished or it hit a I waited ${processingTimeOut}ms timeout")
+    logger.debug(s"Finished. Either it really finished or it hit a ${processingTimeOut}ms timeout")
     bw.close()
   }
 
@@ -60,38 +60,6 @@ object Orchestrator {
     println(s"Wrong number of params (${args.length}). There should be 2 params: {confFilePath} {inputFilePath} ")
     sys.exit(1)
   }
-
-  /*def saveListToElasticsearch(input : List[Future[List[String]]], configurationMap: Config, processingTimeOut: Duration): Unit =  {
-
-    val esIP = configurationMap.getString("elasticsearch.ip")
-    val esPort = configurationMap.getString("elasticsearch.port").toInt
-    val esClusterName = configurationMap.getString("elasticsearch.clusterName")
-    val indexName = configurationMap.getString("elasticsearch.indexName")
-    val documentType = configurationMap.getString("elasticsearch.documentType")
-    var badPracticeResults = new scala.collection.mutable.MutableList[String]()
-    for(result<-input){
-      result.onComplete{
-        case Success(value)=>{
-          for(item<-value){
-            badPracticeResults.+=(item)
-          }
-        }
-        case Failure(e) => {
-          logger.error(s"Error: ${e.getMessage}")
-        }
-      }
-    }
-    logger.info(s"Going to persist ${badPracticeResults.length}")
-
-    //New from 0.19
-    Await.ready(Future.sequence(input), processingTimeOut )
-    logger.debug(s"Finished. Either it really finished or it hit a I waited ${processingTimeOut}ms timeout")
-
-
-    ElasticsearchPersistor.persistWithoutFormatting(badPracticeResults.toList, esIP, esPort , esClusterName, indexName, documentType)
-
-
-  }*/
 
 
   def main (args: Array[String]) {
@@ -105,13 +73,13 @@ object Orchestrator {
 
     // Pipeline configuration
     val mods : List[String] = configurationMap.getStringList("modules").toList.reverse
-    mods.foreach(mod=>logger.info("--------Loading mod: " + mod + " -----------\n"))
+    mods.foreach(mod=>logger.debug("Loading module: " + mod +""))
 
-    logger.info("Starting  -------\n")
-    logger.info(s"Loading data  from ${inputPath}-------\n")
+    logger.info("----- Starting  -------\n")
+    logger.debug(s"Loading data  from ${inputPath}-------\n")
     val initData = Source.fromFile(inputPath).getLines()
     val data : List[String] = initData.toList
-    logger.info("Total number of raw data rows to process: " + data.length + "\n")
+    logger.info("Total number of data rows to process: " + data.length + "\n")
 
     // The name of the modules to be applied are stored in an array
     val funcArray = mods.map(findMixEmModule)
@@ -124,7 +92,6 @@ object Orchestrator {
 
 
     // Data are processed by the selected modules (composed function)
-    logger.debug(s"Number of items after processing (resultJSON): ${futureResults.length}\n")
     val timeout = configurationMap.getInt("executionTimeoutSeconds") seconds
 
     if(configurationMap.hasPath("outputFilePath")){

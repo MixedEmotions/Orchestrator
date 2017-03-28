@@ -12,7 +12,7 @@ import scala.util.parsing.json.JSON
 /**
  * Created by cnavarro on 14/10/16.
  */
-abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExecutor: RequestExecutor) {
+abstract class ExecutableService(serviceName: String, serviceConf: ExecutableServiceConf, requestExecutor: RequestExecutor) {
 
   val logger = LoggerFactory.getLogger(ExecutableService.this.getClass)
   implicit val formats = Serialization.formats(NoTypeHints)
@@ -37,20 +37,9 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
 
   def getIpAndPort(): (String, Int)
 
-  def executeService(input: Map[String,Any]): Map[String, Any] ={
-    if(requirementMet(input)){
-      val selectedResult = performExecution(input)
-      val result = input + ((outputField,selectedResult))
-      result
-    }else{
-      logger.debug(s"Requirement not met: ${requirementRegex} in ${requirementField}")
-      input
-    }
 
-  }
-
-  //this is the real execute
-  def executeServiceAndObtainList(input: Map[String, Any]): List[Map[String, Any]] = {
+  def executeService(input: Map[String, Any]): List[Map[String, Any]] = {
+    logger.info(s"Executing service ${serviceName}")
     if (requirementMet(input)) {
       val selectedResult = performExecution(input)
       if (pivotPath.isDefined) {
@@ -80,10 +69,10 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
     logger.debug(s"SelectedResult: ${selectedResult}")
     if(pollingCondition.isDefined){
       if(!selectedResult.asInstanceOf[Some[List[String]]].get.contains(pollingCondition.get)){
-        logger.debug("response service polling: "+selectedResult)
+        logger.info("Response service polling: "+selectedResult)
         performExecution(input)
       } else{
-        logger.debug("polling condition is DONE: "+selectedResult)
+        logger.info("Polling condition is DONE: "+selectedResult)
       }
     }
 
@@ -143,27 +132,6 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
   }
 
 
-
-
-  def executeService(jsonString: String): String = {
-    val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
-    temp match {
-      case x: Some[Map[String, Any]] => {
-        write(executeService(x.get.asInstanceOf[Map[String,Any]]))
-      }
-      case None => {
-        logger.error(s"Error parsing input json, conserving input: '${jsonString}'")
-        jsonString
-      }
-    }
-  }
-
-  def executeServiceJSONList(input: List[String]) : List[String] = {
-    for (entry <- input) yield {
-      executeService(entry)
-    }
-  }
-
   def executeServiceAsFlatMap(input: List[String]) : List[String] = {
     input.flatMap(executeServiceAsList(_))
 
@@ -174,7 +142,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
     val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
     temp match {
       case x: Some[Map[String, Any]] => {
-        val results = executeServiceAndObtainList(x.get)
+        val results = executeService(x.get)
         for(result<-results) yield {
           write(result)
         }

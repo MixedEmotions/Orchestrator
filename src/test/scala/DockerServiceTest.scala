@@ -18,12 +18,12 @@ class DockerServiceTest extends UnitSpec with MockFactory{
     val discovery = mock[DiscoveryService]
     (discovery.getIpAndPort _).expects("topic-container").returning(("localhost", 32770))
     val dRes= discovery.getIpAndPort("topic-container")
-    val restService = ServiceFactory.dockerServiceFromConfFile(confPath, discovery)
+    val restService = ServiceFactory.dockerServiceFromConfFile("mock topic container", confPath, discovery)
 
   }
 
   "A DockerService " should "have the expected response, including named paths and substitutions" in {
-    assertResult(Map("text" -> "jefe", "lang" -> "es", "topics"->List("DIRECTIVOS"))) {
+    assertResult(List(Map("text" -> "jefe", "lang" -> "es", "topics"->List("DIRECTIVOS")))) {
       val input = "{ \"text\": \"jefe\", \"lang\": \"es\"}"
       val confPath = getClass.getResource("/dockerServices/spanish_topic_service.conf").toString.replaceFirst("file:","")
       val discovery = mock[DiscoveryService]
@@ -31,7 +31,7 @@ class DockerServiceTest extends UnitSpec with MockFactory{
       val requestExecutor = mock[RequestExecutor]
       val queryExpected = "http://localhost:32770/?text=jefe"
       (requestExecutor.executeRequest _).expects("GET", queryExpected, 100000, 500, None, None, "application/json").returning("[\"DIRECTIVOS\"]")
-      val dockerService = ServiceFactory.dockerServiceFromConfFile(confPath, discovery, requestExecutor)
+      val dockerService = ServiceFactory.dockerServiceFromConfFile("mock service", confPath, discovery, requestExecutor)
       val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
       dockerService.executeService(inputMap)
     }

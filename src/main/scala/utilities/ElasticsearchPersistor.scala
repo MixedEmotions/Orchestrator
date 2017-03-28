@@ -27,12 +27,12 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
 
     this(ElasticClient.remote(Settings.settingsBuilder().put("cluster.name", clusterName).build(),
       ElasticsearchClientUri(s"elasticsearch://${ip}:${port}")),     indexName)
-      logger.debug(s"Elasticsearch ip: elasticsearch://${ip}:${port}")
+      logger.info(s"Elasticsearch ip: elasticsearch://${ip}:${port}")
   }
 
 
  def saveTweets(items: Seq[Map[String,Any]], documentType: String): Unit ={
-    logger.debug(s"Saving ${items.size} items in bulk")
+    logger.info(s"Saving ${items.size} items in elasticsearch bulk")
      val resp = client.execute {
        bulk(
          for(item<-items) yield {

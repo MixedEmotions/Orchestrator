@@ -11,8 +11,8 @@ import scalaj.http.{Http, HttpResponse, MultiPart,_}
 /**
  * Created by cnavarro on 4/07/16.
  */
-class RESTService(ip: String, port:Int, serviceConf: ExecutableServiceConf, requestExecutor: RequestExecutor)
-  extends ExecutableService(serviceConf, requestExecutor){
+class RESTService(serviceName: String, ip: String, port:Int, serviceConf: ExecutableServiceConf, requestExecutor: RequestExecutor)
+  extends ExecutableService(serviceName:String, serviceConf, requestExecutor){
 
   def getIpAndPort(): (String, Int) = {
     (ip, port)

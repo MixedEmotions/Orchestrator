@@ -9,8 +9,10 @@
     </appender>
 
     <logger name="orchestrator.Orchestrator" level="DEBUG"/>
+    <logger name="utilities.ServiceConfCompleter" level="INFO"/>
+    <logger name="org.elasticsearch.plugins" level="ERROR"/>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
