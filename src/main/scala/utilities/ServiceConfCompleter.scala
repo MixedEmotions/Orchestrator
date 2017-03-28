@@ -41,8 +41,14 @@ object ServiceConfCompleter{
         val key = part.replaceFirst("^\\{","")
         logger.trace(s"Searching key: ${key}")
         if(inputMap.contains(key)) {
-          val value = inputMap(key)
-          logger.trace(s"Found ${value} for key ${key}")
+          val value = {
+            if(inputMap(key).isInstanceOf[List[Any]]){
+              inputMap(key).asInstanceOf[List[Any]].mkString(",")
+            }else{
+              inputMap(key)
+            }
+          }
+          logger.debug(s"Found ${value} for key ${key}")
           if (urlEncode) {
             URLEncoder.encode(value.toString, "UTF-8")
           } else {
@@ -72,13 +78,13 @@ object ServiceConfCompleter{
     substitutedParts.mkString("")
   }
 
-  def main(args: Array[String]) {
+  /*def main(args: Array[String]) {
     val url = "/com.opensmile.maven/speechemotionservice/getdims?dims=arousal,valence,gender,age,big5o,big5c,big5e,big5a,big5n&url=${videoUrl.value}&timing=-1,-1"
     val params = Map(("ip","127.0.0.1"),("port",8080),("videoUrl", ("value"-> "asaber")))
     val ip = "127.0.0.1"
     val port = 8080
     val completedUrl = completeUrl(ip, port, url, params)
     println(completedUrl)
-  }
+  }*/
 
 }

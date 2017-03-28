@@ -30,7 +30,7 @@ class DockerServiceTest extends UnitSpec with MockFactory{
       (discovery.getIpAndPort _).expects("topic-container").returning(("localhost", 32770))
       val requestExecutor = mock[RequestExecutor]
       val queryExpected = "http://localhost:32770/?text=jefe"
-      (requestExecutor.executeRequest _).expects("GET", queryExpected, 100000, 500, None, None).returning("[\"DIRECTIVOS\"]")
+      (requestExecutor.executeRequest _).expects("GET", queryExpected, 100000, 500, None, None, "application/json").returning("[\"DIRECTIVOS\"]")
       val dockerService = ServiceFactory.dockerServiceFromConfFile(confPath, discovery, requestExecutor)
       val inputMap = JSON.parseFull(input).asInstanceOf[Some[Map[String, Any]]].getOrElse(Map[String, Any]())
       dockerService.executeService(inputMap)

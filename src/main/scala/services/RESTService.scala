@@ -24,7 +24,7 @@ object RESTService {
    val logger = LoggerFactory.getLogger(RESTService.getClass)
 
 
-
+ /*
   def main(args: Array[String]) {
 
 
@@ -86,6 +86,6 @@ object RESTService {
 
 
 
-  }
+  }*/
 
 }

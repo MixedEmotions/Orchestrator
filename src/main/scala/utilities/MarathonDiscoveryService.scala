@@ -58,12 +58,12 @@ class MarathonDiscoveryService(dnsIp: String, dnsPort: Int) extends DiscoverySer
 }
 
 object MarathonDiscoveryService {
-  def main(args: Array[String]) {
+  /*def main(args: Array[String]) {
     val discovery = new MarathonDiscoveryService("localhost",8123)
     val (ip, port) = discovery.getIpAndPort("bridged-webapp")
     println(s"ip:${ip}, ${port}")
 
-  }
+  }*/
 
   def getURL(url:String): String = {
     try {

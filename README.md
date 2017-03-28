@@ -19,7 +19,8 @@ You can find compiled jars in the [releases section](https://github.com/MixedEmo
 Run the following command:
 
 
-`java -cp  MixedEmotionsExampleOrchestrator-assembly-0.15.jar orchestrator.ListFutureOrchestrator {confFilePath} {inputPath}`
+`java -jar  MixedEmotionsExampleOrchestrator-assembly-0.19.jar {confFilePath} {inputPath}`
+
 
 
 # Configuration
@@ -126,6 +127,7 @@ In this case, the service is called by a GET request to http://localhost:32769/?
 	 `{“id”:132, “lang”:”es”, “text”:”some text to analyze”, “concepts”:[“banking”, “loan”]}`
 * **body** (optional): For POST requests, the key of the input json that will be used as body. For example if `body=”videoPath”` and the input json is: `{“id”:132, “lang”:”es”,”videoPath”:”/home/videos/video”}`
  The content of the body will be `“/home/videos/video”`.
+* **contentType** (optional): Sets the contentType to be sent. In none is present, it defaults to 'application/json'
 * **RequestDelayMs**: Delay before http requests. Useful if the server might not be able to handle all the requests at once. Defaults to 500
 * **RequestTimeoutSeconds**: Time to wait before considering a request failed. Useful if there are services that can halt unexpectedly and never return an error message. Defaults to 100.
 
@@ -159,6 +161,35 @@ Most of the fields of the Docker conf file are equal to the ones in Rest configu
 
 # Input File
 The input file must be formed of valid json maps, one on each line.
+
+
+# Logging
+
+Default logging is set to debug. In case another level of loggin is to be set, a logging configuration file could be passed as an argument. For example:
+
+    java -Dlogback.configurationFile=/path/to/config.xml -jar MixedEmotionsOrchestrator-assembly-1.0.jar {confPath} {inputPath}
+
+The default logger configuration is at src/main/resources/logback.xml
+
+Following there is an example configuration with which ERROR level is set for each class except for Orchestrator.
+
+    <configuration>
+    
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <!-- encoders are assigned the type
+                 ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+            <encoder>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+        </appender>
+    
+        <logger name="orchestrator.Orchestrator" level="DEBUG"/>
+    
+        <root level="ERROR">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </configuration>
+
 
 ## Acknowledgement
 

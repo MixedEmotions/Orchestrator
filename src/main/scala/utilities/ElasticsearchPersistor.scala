@@ -5,12 +5,16 @@ import java.util.Calendar
 
 import com.sksamuel.elastic4s.ElasticDsl.{bulk, index, _}
 import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
+import com.typesafe.config.Config
 import org.elasticsearch.common.settings.Settings
 import org.json4s.NoTypeHints
 import org.json4s.jackson.Serialization
 import org.json4s.jackson.Serialization._
 import org.slf4j.LoggerFactory
 
+import scala.concurrent.{Await, Future}
+import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success}
 import scala.util.parsing.json.JSON
 
 /**
@@ -27,50 +31,7 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
   }
 
 
-  def saveTweet(tweet : Map[String, Any]) :  scala.collection.mutable.Map[String, Any] ={
-    logger.debug("Saving tweets")
-
-
-    val resp = client.execute {
-      val rawTweet  = tweet("raw").asInstanceOf[Map[String,Any]]
-      index into "myanalyzed" / "tweet" fields(
-        "lang" -> tweet("lang").asInstanceOf[String],
-        "raw" ->  rawTweet,
-        "brand" -> tweet("brand").asInstanceOf[String],
-        "text" -> tweet("text").asInstanceOf[String],
-        "created_at" -> tweet("time").asInstanceOf[String],
-        //"hashtags" -> record.getOrElse("hashtags", "").asInstanceOf[List[String]].toArray,
-        //"topics" -> record.getOrElse("topics", "").asInstanceOf[List[String]].toArray,
-        "project" -> tweet("project_id").asInstanceOf[Double].round.toInt,
-        //"concepts" -> record.getOrElse("concepts", "").asInstanceOf[List[String]].toArray,
-        //"mentions" -> record.getOrElse("mentions", "").asInstanceOf[List[String]].toArray,
-        //"sentiment" -> record.getOrElse("sentiment", "").asInstanceOf[String],
-        "id" -> rawTweet("id_str").asInstanceOf[String],
-        "url" -> tweet("url"),
-        "synonym_found" -> tweet("synonym_found"),
-        "source" -> tweet("source"),
-        "nots" -> tweet("nots"),
-        "synonyms" -> tweet("synonyms"),
-        "index_time" -> System.currentTimeMillis()
-
-        ) id rawTweet("id")
-    }.await // don't block in real code
-
-    collection.mutable.Map(tweet.toSeq: _*)
-
-
-    /*
-    val pw = new PrintWriter(new File("/home/cnavarro/ids.txt" ))
-    pw.write(""+record.getOrElse("id", "").asInstanceOf[Double])
-    pw.write("\n")
-    pw.write(""+result.getOrElse("_id", "").asInstanceOf[String])
-    pw.write("\n")
-    */
-
-
-  }
-
-  def saveTweets(items: Seq[Map[String,Any]], documentType: String): Unit ={
+ def saveTweets(items: Seq[Map[String,Any]], documentType: String): Unit ={
     logger.debug(s"Saving ${items.size} items in bulk")
      val resp = client.execute {
        bulk(
@@ -85,98 +46,11 @@ class ElasticsearchPersistor(val client: ElasticClient, val indexName: String) {
        }
 
      }
-
-
-
-
 }
 
 object ElasticsearchPersistor {
   val logger = LoggerFactory.getLogger(ElasticsearchPersistor.getClass)
-
-  def persistTweetsFromMapMP(lines: Iterator[scala.collection.mutable.Map[String,Any]], ip:String, port:Int,
-                             clusterName: String, indexName: String) : Iterator[scala.collection.mutable.Map[String,Any]]= {
-    val persistor : ElasticsearchPersistor = new ElasticsearchPersistor(ip, port, clusterName, indexName )
-
-    for(line<-lines) yield {
-      persistor.saveTweet(line.toMap)
-    }
-
-    /*
-    var todosloselements: Array
-    foreach 100 elements in lines
-       todosloseleemtns += persist(100elements)
-
-    return todosloselements.toIterator
-     */
-
-
-
-  }
-
-  def persistTweetsFromMap(lines: Iterator[Map[String,Any]], ip:String, port:Int, clusterName: String,
-                            indexName: String) : Unit= {
-    val persistor : ElasticsearchPersistor = new ElasticsearchPersistor(ip, port, clusterName, indexName)
-
-    val chunks = lines.grouped(100)
-
-    for(chunk<-chunks) {
-      persistor.saveTweets(chunk, "tweet")
-    }
-
-  }
-
-  def formatTweet(tweet: Map[String,Any]) : Map[String, Any] = {
-
-
-    val rawTweet  = tweet("raw").asInstanceOf[Map[String,Any]]
-    val projectId = tweet("project_id").asInstanceOf[Double].round.toInt
-    Map("lang" -> tweet("lang").asInstanceOf[String],
-        "raw" ->  rawTweet,
-        "brand" -> tweet("brand").asInstanceOf[String],
-        "text" -> tweet("text").asInstanceOf[String],
-        "created_at" -> tweet("time").asInstanceOf[String],
-        //"hashtags" -> record.getOrElse("hashtags", "").asInstanceOf[List[String]].toArray,
-        "topics" -> tweet.getOrElse("topics", List()).asInstanceOf[List[String]].toArray,
-        "project" -> projectId,
-        "concepts" -> tweet.getOrElse("concepts", List()).asInstanceOf[List[String]].toArray,
-        //"mentions" -> record.getOrElse("mentions", "").asInstanceOf[List[String]].toArray,
-        "emotions" -> tweet.getOrElse("emotions", Map()).asInstanceOf[Map[String,Any]],
-        "sentiment" -> tweet.getOrElse("sentiment", 0.0).asInstanceOf[Double],
-        "polarity" -> tweet.getOrElse("polarity", "").asInstanceOf[String],
-        "tweet_id" -> rawTweet("id_str").asInstanceOf[String],
-        "id" -> List(projectId, rawTweet("id_str").asInstanceOf[String]).mkString("_"),
-        "url" -> tweet("url"),
-        "synonym_found" -> tweet("synonym_found"),
-        "source" -> tweet("source"),
-        "nots" -> tweet("nots"),
-        "synonyms" -> tweet("synonyms"),
-        "index_time" -> System.currentTimeMillis()
-    )
-
-
-  }
-
-
-  
-  def persistTweets(input: List[String], ip: String, port: Int, clusterName: String,
-                           indexName: String): Unit = {
-    logger.debug(s"~~~~~~~~~~~~~~~~~going to persist tweets in ${ip}:${port.toString} at ${clusterName}")
-
-
-    val parsedTweets = input.map(x=> JSON.parseFull(x).asInstanceOf[Option[Map[String,Any]]].getOrElse(Map[String,Any]()))
-
-    val formattedTweets = parsedTweets.map(tweet => formatTweet(tweet))
-
-    val persistor : ElasticsearchPersistor = new ElasticsearchPersistor(ip, port, clusterName, indexName)
-
-    val chunks = formattedTweets.grouped(100)
-
-    for(chunk<-chunks) {
-      persistor.saveTweets(chunk, "tweet")
-    }
-
-  }
+  import concurrent.ExecutionContext.Implicits.global
 
   def persistWithoutFormatting(input: List[String], ip: String, port: Int, clusterName: String,
                                 indexName: String, documentType: String): Unit = {
@@ -199,6 +73,38 @@ object ElasticsearchPersistor {
 
   }
 
+  def saveListToElasticsearch(input : List[Future[List[String]]], configurationMap: Config, processingTimeOut: Duration): Unit =  {
+
+    val esIP = configurationMap.getString("elasticsearch.ip")
+    val esPort = configurationMap.getString("elasticsearch.port").toInt
+    val esClusterName = configurationMap.getString("elasticsearch.clusterName")
+    val indexName = configurationMap.getString("elasticsearch.indexName")
+    val documentType = configurationMap.getString("elasticsearch.documentType")
+    var badPracticeResults = new scala.collection.mutable.MutableList[String]()
+    for(result<-input){
+      result.onComplete{
+        case Success(value)=>{
+          for(item<-value){
+            badPracticeResults.+=(item)
+          }
+        }
+        case Failure(e) => {
+          logger.error(s"Error: ${e.getMessage}")
+        }
+      }
+    }
+    logger.info(s"Going to persist ${badPracticeResults.length}")
+
+    //New from 0.19
+    Await.ready(Future.sequence(input), processingTimeOut )
+    logger.debug(s"Finished. Either it really finished or it hit a I waited ${processingTimeOut}ms timeout")
+
+
+    ElasticsearchPersistor.persistWithoutFormatting(badPracticeResults.toList, esIP, esPort , esClusterName, indexName, documentType)
+
+
+  }
+
   def now(): String = {
     val time = Calendar.getInstance().getTime()
     val formatter = new SimpleDateFormat("yyyyMMddHHmmss")
@@ -207,7 +113,7 @@ object ElasticsearchPersistor {
 
 
 
-  def main (args: Array[String]) {
+  /*def main (args: Array[String]) {
     val filepath = if(args.length>0) args(0) else "/home/cnavarro/workspace/mixedemotions/MixedEmotions/orchestrator/src/test/resources/input/one.txt"
     val ip = "localhost"
     val port = 9300
@@ -230,7 +136,7 @@ object ElasticsearchPersistor {
     persistWithoutFormatting(input, ip, port, clusterName, indexName, documentType)
     println("Finished, I guess")
 
-  }
+  }*/
 }
 
 

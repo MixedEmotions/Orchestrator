@@ -33,6 +33,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
   val requirementField = serviceConf.requirementField
   val requirementRegex = serviceConf.requirementRegex
   val pollingCondition = serviceConf.pollingCondition
+  val contentType = serviceConf.contentType
 
   def getIpAndPort(): (String, Int)
 
@@ -73,7 +74,7 @@ abstract class ExecutableService(serviceConf: ExecutableServiceConf, requestExec
     val fileUploadData : Option[Map[String, String]] = if(fileUploadConf.isDefined) ServiceConfCompleter.completeFileUploadData(fileUploadConf.get, input) else None
 
     val response = requestExecutor.executeRequest(method, url, body=bodyContent, requestDelay = requestDelayMs, requestTimeout = requestTimeoutMs,
-      fileUploadData=fileUploadData)
+      fileUploadData=fileUploadData, contentType=contentType)
     //logger.debug(s"Response: ${response}")
     val selectedResult = parseResponse(response, responsePath, responseMap, responseParseString, pivotPath, pollingCondition)
     logger.debug(s"SelectedResult: ${selectedResult}")

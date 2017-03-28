@@ -83,7 +83,7 @@ object JsonPathsTraversor {
 
 
 
-  def main(args: Array[String]) {
+  /*def main(args: Array[String]) {
     //val path = "root.children.grandchildren.item"
 
 
@@ -327,6 +327,6 @@ object JsonPathsTraversor {
     //println(getMapInJsonPath("entries.sentiments", List("marl:hasPolarity","marl:polarityValue"),jsonString2))
 
 
-  }
+  }*/
 
 }

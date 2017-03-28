@@ -26,8 +26,8 @@ class HttpRequestExecutor extends RequestExecutor{
     queryResponse.iterator
   }*/
   def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: Option[String],
-                     fileUploadData: Option[Map[String,String]]=None): String = {
-    HttpRequestExecutor.executeRequest(method, query, requestTimeout, requestDelay, body, fileUploadData)
+                     fileUploadData: Option[Map[String,String]]=None, contentType: String): String = {
+    HttpRequestExecutor.executeRequest(method, query, requestTimeout, requestDelay, body, fileUploadData, contentType)
   }
 
 
@@ -38,25 +38,25 @@ object HttpRequestExecutor {
 
 
   def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: Option[String],
-                      fileUploadData: Option[Map[String,String]]=None): String ={
+                       fileUploadData: Option[Map[String,String]], contentType: String): String ={
     if(method=="POST"){
-      executePostRequest(query, body, requestTimeout, requestDelay, fileUploadData)
+      executePostRequest(query, body, requestTimeout, requestDelay, fileUploadData, contentType)
     }else{
-      executeGetRequest(query, requestTimeout, requestDelay)
+      executeGetRequest(query, requestTimeout, requestDelay, contentType)
     }
   }
 
 
 
   // Each query is delivered to the service and the response is stored
-  def executeGetRequest(query: String, requestTimeoutMs: Int, requestDelayMs: Int): String = {
+  def executeGetRequest(query: String, requestTimeoutMs: Int, requestDelayMs: Int, contentType: String): String = {
     // The REST service is queried and the response (JSON format) is obtained
     logger.debug(s"Waiting ${requestDelayMs}ms")
     Thread.sleep(requestDelayMs)
     try {
       logger.debug(s"Executing query ${query}")
       logger.debug(s"Waiting response for ${requestTimeoutMs} ms")
-      val response: HttpResponse[String] = Http(query).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+      val response: HttpResponse[String] = Http(query).header("content-type",contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
       logger.debug(s"Got response")
       if (response.isError) {
         logger.error(s"HttpError: $query . ${response.body} ${response.code}")
@@ -75,13 +75,14 @@ object HttpRequestExecutor {
 
   }
 
-  def executePostRequest(query: String, postBody:Option[String], requestTimeoutMs: Int, requestDelayMs: Int, fileUploadData: Option[Map[String,String]]): String = {
+  def executePostRequest(query: String, postBody:Option[String], requestTimeoutMs: Int, requestDelayMs: Int, fileUploadData: Option[Map[String,String]],
+                          contentType: String): String = {
     // The REST service is queried and the response (JSON format) is obtained
     logger.debug(s"Waiting for ${requestDelayMs}ms")
     Thread.sleep(requestDelayMs)
     try {
       logger.debug(s"Waiting response for ${requestTimeoutMs} ms")
-      val response: HttpResponse[String] = sendPost(query, postBody, requestTimeoutMs, fileUploadData)
+      val response: HttpResponse[String] = sendPost(query, postBody, requestTimeoutMs, fileUploadData, contentType)
       logger.debug(s"Response: ${response}")
       if (response.isError) {
         logger.error(s"HttpError: $query . ${response.body} ${response.code}")
@@ -99,7 +100,8 @@ object HttpRequestExecutor {
     }
   }
 
-  def sendPost(query: String, postBody: Option[String], requestTimeoutMs: Int, fileUploadDataOption: Option[Map[String, String]]): HttpResponse[String] = {
+  def sendPost(query: String, postBody: Option[String], requestTimeoutMs: Int, fileUploadDataOption: Option[Map[String, String]],
+               contentType: String ): HttpResponse[String] = {
     if(fileUploadDataOption.isDefined) {
       val fileUploadData = fileUploadDataOption.get
       logger.debug("Going to try file upload")
@@ -122,7 +124,8 @@ object HttpRequestExecutor {
       logger.debug(s"Query: ${query}")
       Http(query).postMulti(multi).timeout(connTimeoutMs = 100000, readTimeoutMs = requestTimeoutMs).asString
     }else {
-      Http(query).postData(postBody.getOrElse("")).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+      //Http(query).postData(postBody.getOrElse("")).header("content-type", contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
+      Http(query).postData(postBody.getOrElse("")).header("content-type", contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
     }
   }
 

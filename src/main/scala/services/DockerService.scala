@@ -17,13 +17,7 @@ extends ExecutableService(serviceConf, requestExecutor ){
 
 object DockerService {
 
-
-
-
-
-
-
-  def main(args: Array[String]) {
+  /*def main(args: Array[String]) {
 
     val inputs = Array("{\"text\": \"I hate western movies with John Wayne\", \"nots\": [\"hola\"], \"lang\": \"en\"}",
       "{ \"text\": \"Really nice car\", \"nots\": [\"hola\"], \"lang\": \"en\"}",
@@ -50,7 +44,7 @@ object DockerService {
       println(result)
     }
 
-  }
+  }*/
 
 
 }
