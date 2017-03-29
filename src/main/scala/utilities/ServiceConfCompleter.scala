@@ -33,7 +33,6 @@ object ServiceConfCompleter{
     Some(completedFileUploadData)
   }
 
-  //TODO: Probably the first part of the if(inputMap.contains(key) is redundant with the json traversor stuff
   def completeString(parameteredString: String, inputMap: Map[String, Any], urlEncode: Boolean):String = {
     val parts = parameteredString.split("[$|}]")
     val substitutedParts = parts.map(part=>{
@@ -77,14 +76,4 @@ object ServiceConfCompleter{
     })
     substitutedParts.mkString("")
   }
-
-  /*def main(args: Array[String]) {
-    val url = "/com.opensmile.maven/speechemotionservice/getdims?dims=arousal,valence,gender,age,big5o,big5c,big5e,big5a,big5n&url=${videoUrl.value}&timing=-1,-1"
-    val params = Map(("ip","127.0.0.1"),("port",8080),("videoUrl", ("value"-> "asaber")))
-    val ip = "127.0.0.1"
-    val port = 8080
-    val completedUrl = completeUrl(ip, port, url, params)
-    println(completedUrl)
-  }*/
-
 }

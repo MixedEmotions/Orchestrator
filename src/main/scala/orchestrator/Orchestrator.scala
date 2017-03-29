@@ -4,7 +4,7 @@ import java.io.{BufferedWriter, File, FileWriter}
 
 import com.typesafe.config.{Config, ConfigFactory}
 import org.slf4j.LoggerFactory
-import services.{ServiceFactory, NotsFilter, DockerService, RESTService}
+import services.{ServiceFactory, DockerService, RESTService}
 import utilities.{ElasticsearchPersistor, MarathonDiscoveryService}
 
 

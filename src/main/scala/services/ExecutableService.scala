@@ -137,7 +137,6 @@ abstract class ExecutableService(serviceName: String, serviceConf: ExecutableSer
 
   }
 
-  //this is the real service
   def executeServiceAsList(jsonString: String): List[String] = {
     val temp = JSON.parseFull(jsonString).asInstanceOf[Option[Map[String,Any]]]
     temp match {

@@ -114,7 +114,7 @@ object ElasticsearchPersistor {
 
 
   /*def main (args: Array[String]) {
-    val filepath = if(args.length>0) args(0) else "/home/cnavarro/workspace/mixedemotions/MixedEmotions/orchestrator/src/test/resources/input/one.txt"
+    val filepath = if(args.length>0) args(0) else "src/test/resources/input/one.txt"
     val ip = "localhost"
     val port = 9300
     val clusterName = "MixedEmotions"

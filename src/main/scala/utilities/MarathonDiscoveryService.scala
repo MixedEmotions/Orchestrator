@@ -36,12 +36,6 @@ class MarathonDiscoveryService(dnsIp: String, dnsPort: Int) extends DiscoverySer
 }
 
 object MarathonDiscoveryService {
-  /*def main(args: Array[String]) {
-    val discovery = new MarathonDiscoveryService("localhost",8123)
-    val (ip, port) = discovery.getIpAndPort("bridged-webapp")
-    println(s"ip:${ip}, ${port}")
-
-  }*/
 
   def getURL(url:String): String = {
     try {
@@ -53,21 +47,5 @@ object MarathonDiscoveryService {
     }
   }
 
-  def fakeUrl(url: String): String = {
-    """[
-  {
-   "service": "_bridged-webapp._tcp.marathon.mesos",
-   "host": "bridged-webapp-r66a9-s0.marathon.slave.mesos.",
-   "ip": "192.168.1.12",
-   "port": "31585"
-  },
-  {
-   "service": "_bridged-webapp._tcp.marathon.mesos",
-   "host": "bridged-webapp-rqmyb-s0.marathon.slave.mesos.",
-   "ip": "192.168.1.11",
-   "port": "31510"
-  }
- ]"""
-  }
 
 }

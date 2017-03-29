@@ -11,21 +11,7 @@ import utilities.ServiceConfCompleter.completeBody
 
 class HttpRequestExecutor extends RequestExecutor{
 
-  // Each query is delivered to the service and the response is stored
-  /*def executeRestRequest(query: Iterator[String]): Iterator[String] = {
-
-    var queryResponse = List[String]()
-    while (query.hasNext) {
-      // The REST service is queried and the response (JSON format) is obtained
-      val response: HttpResponse[String] = Http(query.next()).timeout(connTimeoutMs = 10000, readTimeoutMs = 50000)
-        .asString
-      // The response in JSON format is processed
-      if (response.isNotError)
-        queryResponse .::= (response.body)
-    }
-    queryResponse.iterator
-  }*/
-  def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: Option[String],
+ def executeRequest(method: String, query: String, requestTimeout: Int = 50000, requestDelay: Int = 500, body: Option[String],
                      fileUploadData: Option[Map[String,String]]=None, contentType: String): String = {
     HttpRequestExecutor.executeRequest(method, query, requestTimeout, requestDelay, body, fileUploadData, contentType)
   }
@@ -124,7 +110,6 @@ object HttpRequestExecutor {
       logger.debug(s"Query: ${query}")
       Http(query).postMulti(multi).timeout(connTimeoutMs = 100000, readTimeoutMs = requestTimeoutMs).asString
     }else {
-      //Http(query).postData(postBody.getOrElse("")).header("content-type", contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
       Http(query).postData(postBody.getOrElse("")).header("content-type", contentType).timeout(connTimeoutMs = 10000, readTimeoutMs = requestTimeoutMs).asString
     }
   }
