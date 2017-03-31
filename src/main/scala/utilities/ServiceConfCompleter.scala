@@ -22,7 +22,11 @@ object ServiceConfCompleter{
   }
 
   def completeBody(parameteredBody: String, inputMap : Map[String, Any] ): String = {
-    completeString(parameteredBody, inputMap, false)
+    if(parameteredBody==""){
+      write(inputMap)
+    }else{
+      completeString(parameteredBody, inputMap, false)
+    }
   }
 
   def completeFileUploadData(fileUploadConf: Map[String,String], inputMap : Map[String, Any] ): Option[Map[String, String]] = {

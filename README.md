@@ -58,7 +58,7 @@ Fields description
 
  
 * **modules**: modules to be executed, in order. There are 2 types of modules: rest and docker modules. The modules names will be the configuration file name, preceded by “rest” or “docker”. The configuration file for the module should be in the corresponding folder and should end in ‘.conf’. So, for the previous example, there should be a module configuration in `/some/absolute/path/restServices/some_external_service.conf`, in `/some/absolute/path/dockerServices/sentiment_extraction.conf`.
-* **elasticsearch**: if present, elasticsearch where to send the results.
+* **elasticsearch**: if present, elasticsearch where to send the results. Be careful as this works with a plugin that uses the API, so it is only compatible with certain versions of Elasticsearch. At the moment it uses sksamuel 2.4.0 which seems to be compatible also with 2.3.5
 * **mesos-dns**: address of the Mesos-dns api
 * **docker_conf_folder**: folder with the docker modules configurations.
 * **rest_conf_folder**: folder with the rest modules configurations.
@@ -150,8 +150,8 @@ Following there is an explanation of the fields that can be used in modules conf
 * **pivotId**: value to assign to the `pivotName`. It could use the `${}` syntaxt of the request url if it is needed to input a value from the input map. For example, if your request has the form: `{“text”:”Lorem impsum….”, “text_name”:”111”}` you could use `pivotId=”${textName}”`.
 * **outputField**: The key to be added to the input json with the result of the service request. If outputField is `‘concepts’`, taking into account the previous examples, the result json will be this:
 	 `{“id”:132, “lang”:”es”, “text”:”some text to analyze”, “concepts”:[“banking”, “loan”]}`
-* **body** (optional): For POST requests, the key of the input json that will be used as body. For example if `body=”videoPath”` and the input json is: `{“id”:132, “lang”:”es”,”videoPath”:”/home/videos/video”}`
- The content of the body will be `“/home/videos/video”`.
+* **body** (optional): For POST requests, the content of the body. It substitutes the chunks within "${_}" for its corresponding json path. For example if `body="""{"path": "${videoPath}" }”` and the input json is: `{“id”:132, “lang”:”es”,”videoPath”:”/home/videos/video”}`
+ The content of the body will be `{"path":"/home/videos/video"}`. If body is set to empty string ("") it will send the whole input json.
 * **contentType** (optional): Sets the contentType to be sent. In none is present, it defaults to 'application/json'
 * **requestDelayMs**: Delay before http requests. Useful if the server might not be able to handle all the requests at once. Defaults to 500
 * **requestTimeoutSeconds**: Time to wait before considering a request failed. Useful if there are services that can halt unexpectedly and never return an error message. Defaults to 100.
