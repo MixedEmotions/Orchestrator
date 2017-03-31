@@ -34,10 +34,13 @@ object ServiceConfCompleter{
   }
 
   def completeString(parameteredString: String, inputMap: Map[String, Any], urlEncode: Boolean):String = {
-    val parts = parameteredString.split("[$|}]")
+    val substitutedString = parameteredString.replaceAll("\\$\\{","\\$@{")
+    val parts = substitutedString.split("\\$")
     val substitutedParts = parts.map(part=>{
-      if(part.startsWith("{")){
-        val key = part.replaceFirst("^\\{","")
+      if(part.startsWith("@{")){
+        val partialParts = part.split("}")
+        val key = partialParts(0).replaceFirst("^@\\{","")
+        val rest = partialParts.tail.mkString("}")
         logger.trace(s"Searching key: ${key}")
         if(inputMap.contains(key)) {
           val value = {
@@ -49,9 +52,9 @@ object ServiceConfCompleter{
           }
           logger.debug(s"Found ${value} for key ${key}")
           if (urlEncode) {
-            URLEncoder.encode(value.toString, "UTF-8")
+            URLEncoder.encode(value.toString, "UTF-8") +rest
           } else {
-            value
+            value + rest
           }
         }else{
           logger.debug(s"Trying ${key} as path")
@@ -59,9 +62,9 @@ object ServiceConfCompleter{
           if(foundItem.isDefined){
             val value = foundItem.get.asInstanceOf[List[Any]].mkString(",")
             if (urlEncode) {
-            URLEncoder.encode(value.toString, "UTF-8")
+            URLEncoder.encode(value.toString, "UTF-8")+rest
             } else {
-              value
+              value +rest
             }
           }else{
             val error = s"Unable to find key or path '${key}' when completing string"
@@ -74,6 +77,11 @@ object ServiceConfCompleter{
         part
       }
     })
-    substitutedParts.mkString("")
+    val result = substitutedParts.mkString("")
+    if(parameteredString.startsWith("{") && parameteredString.endsWith("}")){
+      result + "}"
+    }else{
+      result
+    }
   }
 }
